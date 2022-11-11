@@ -11,7 +11,7 @@ interface Props extends SiteSettingsPage {
 }
 
 export default function SubPage({ ...props }: Props) {
-  return <CustomPage {...props} />;
+  return <CustomPage {...props} subpages={[]} />;
 }
 
 export const getStaticProps: GetStaticProps = async ({
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async ({
 export async function getStaticPaths() {
   const pages = (await getAllPagesWithSlug())
     .filter(({ parentSlug }) => parentSlug)
-    .filter(({ parentSlug, slug }) => !existsSync(join(__dirname, `${parentSlug}/${slug}.js`)));
+    .filter(({ parentSlug, slug }) => !existsSync(join(process.cwd(), "pages", parentSlug, slug, "index.tsx")));
   return {
     paths:
       pages?.map(({ slug, parentSlug }) => ({

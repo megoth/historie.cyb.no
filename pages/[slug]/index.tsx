@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({
 export async function getStaticPaths() {
   const pages = (await getAllPagesWithSlug())
     .filter(({ parentSlug }) => !parentSlug)
-    .filter(({ slug }) => !existsSync(join(__dirname, `${slug}.js`)));
+    .filter(({ slug }) => !existsSync(join(process.cwd(), "pages", slug, "index.tsx")));
   return {
     paths:
       pages?.map(({ slug }) => ({
