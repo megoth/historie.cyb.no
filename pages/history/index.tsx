@@ -6,7 +6,7 @@ import {
 } from "../../lib/api/history";
 import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
-import PageComponents from "../../components/page-components";
+import Events from '../../components/events';
 
 interface Props extends SiteSettingsPage {
   allEvents?: Array<EventForListQuery>;
@@ -20,7 +20,7 @@ export default function AllPeoplePage({
 }: Props) {
   return (
     <Layout pageTitle={page?.title} siteSettings={siteSettings}>
-      <PageComponents page={page} events={allEvents} />
+      <Events events={allEvents} />
     </Layout>
   );
 }
