@@ -12,6 +12,7 @@ import siteSettings from "./siteSettings";
 import page from "./page";
 import buttonComponent from "./buttonComponent";
 import buttonsComponent from "./buttonsComponent";
+import subpagesComponent from "./subpagesComponent";
 import textComponent from "./textComponent";
 import navigation from "./navigation";
 import link from "./link";
@@ -39,6 +40,7 @@ export default createSchema({
     buttonComponent,
     buttonsComponent,
     dataComponent,
+    subpagesComponent,
     textComponent,
     link,
     navigationItem,

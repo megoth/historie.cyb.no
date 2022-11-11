@@ -1,5 +1,7 @@
+import { ComponentTypes } from './page';
+
 export default {
-  name: "buttons-component",
+  name: ComponentTypes.BUTTONS,
   title: "Knapper",
   type: "object",
   fields: [

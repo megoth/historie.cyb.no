@@ -152,6 +152,7 @@ Om dette er en underside, legg til foreldresiden her
         | Sanity.Keyed<ButtonComponent>
         | Sanity.Keyed<ButtonsComponent>
         | Sanity.Keyed<DataComponent>
+        | Sanity.Keyed<SubpagesComponent>
       >;
     }
 

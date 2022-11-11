@@ -1,5 +1,7 @@
+import { ComponentTypes } from './page';
+
 export default {
-  name: "text-component",
+  name: ComponentTypes.TEXT,
   title: "Tekst",
   type: "object",
   fields: [

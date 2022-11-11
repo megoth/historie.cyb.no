@@ -707,6 +707,19 @@
                 "hasValidation": false,
                 "type": "RegistryReference",
                 "to": "data-component"
+              },
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "type": "RegistryReference",
+                "to": "subpages-component"
               }
             ],
             "list": null

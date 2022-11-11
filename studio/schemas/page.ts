@@ -1,5 +1,13 @@
 import { RiPagesLine } from "react-icons/ri";
 
+export const ComponentTypes = {
+  TEXT: "text-component",
+  BUTTON: "button-component",
+  BUTTONS: "buttons-component",
+  DATA: "data-component",
+  SUBPAGES: "subpages-component",
+}
+
 export default {
   name: "page",
   title: "Side",
@@ -43,12 +51,9 @@ export default {
       name: "components",
       title: "Innhold",
       type: "array",
-      of: [
-        { type: "text-component" },
-        { type: "button-component" },
-        { type: "buttons-component" },
-        { type: "data-component" },
-      ],
+      of: Object.entries(ComponentTypes).map(([key, value]) => ({
+        type: value
+      })),
     },
   ],
   preview: {

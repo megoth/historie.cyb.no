@@ -6,6 +6,8 @@ import ButtonsComponent from "../buttons-component";
 import DataComponent from "../data-component";
 import { DataModules } from "../../lib/api/dataModules";
 import Container from "../container";
+import { ComponentTypes } from '../../studio/schemas/page';
+import SubpagesComponent from '../subpages-component';
 
 interface Props extends DataModules {
   page?: Partial<PageQuery>;
@@ -13,6 +15,7 @@ interface Props extends DataModules {
 
 export interface ComponentProps {
   componentIndex: number;
+  page: Partial<PageQuery>;
 }
 
 export default function PageComponents({ page, ...data }: Props) {
@@ -23,28 +26,34 @@ export default function PageComponents({ page, ...data }: Props) {
     <>
       {page.components?.map((component, index) => {
         const key = `page-component-${index}-${component._type}`;
+        const props = { ...component, ...data, page, componentIndex: index };
         switch (component._type) {
-          case "button-component":
+          case ComponentTypes.BUTTON:
             return (
               <Container key={key}>
-                <ButtonComponent {...component} componentIndex={index} />
+                <ButtonComponent {...props} />
               </Container>
             );
-          case "buttons-component":
+          case ComponentTypes.BUTTONS:
             return (
               <Container key={key}>
-                <ButtonsComponent {...component} componentIndex={index} />
+                <ButtonsComponent {...props} />
               </Container>
             );
-          case "data-component":
-            const props = { ...component, ...data };
+          case ComponentTypes.DATA:
             return (
-              <DataComponent {...props} key={key} componentIndex={index} />
+              <DataComponent {...props} key={key} />
             );
-          case "text-component":
+          case ComponentTypes.TEXT:
             return (
               <Container key={key}>
-                <TextComponent {...component} componentIndex={index} />
+                <TextComponent {...props} />
+              </Container>
+            );
+          case ComponentTypes.SUBPAGES:
+            return (
+              <Container key={key}>
+                <SubpagesComponent {...props} />
               </Container>
             );
           default:

@@ -1,7 +1,8 @@
 import { dataModules } from "../../lib/api/dataModules";
+import { ComponentTypes } from './page';
 
 export default {
-  name: "data-component",
+  name: ComponentTypes.DATA,
   title: "Data modul",
   type: "object",
   fields: [
