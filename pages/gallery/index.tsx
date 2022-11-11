@@ -2,8 +2,8 @@ import React from "react";
 import Layout from "../../components/layout";
 import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
-import PageComponents from "../../components/page-components";
 import { AlbumQuery, getAllAlbums } from "../../lib/api/gallery";
+import Albums from '../../components/albums';
 
 interface Props extends SiteSettingsPage {
   albums?: Array<AlbumQuery>;
@@ -13,7 +13,7 @@ interface Props extends SiteSettingsPage {
 export default function AllAlbumsPage({ albums, siteSettings, page }: Props) {
   return (
     <Layout pageTitle={page?.title} siteSettings={siteSettings}>
-      <PageComponents page={page} albums={albums} />
+      <Albums albums={albums} />
     </Layout>
   );
 }
