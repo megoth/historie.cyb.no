@@ -4,8 +4,10 @@ import { textComponentStyle } from "./styles.css";
 import cn from "classnames";
 import TextBlock from "../text-block";
 
-interface Props extends Sanity.Schema.TextComponent, ComponentProps {}
+interface Props extends ComponentProps {
+  component: Sanity.Schema.TextComponent;
+}
 
-export default function TextComponent({ text, variant }: Props) {
-  return <TextBlock text={text} className={cn(textComponentStyle, variant)} />;
+export default function TextComponent({ component }: Props) {
+  return <TextBlock text={component.text} className={cn(textComponentStyle, component.variant)} />;
 }

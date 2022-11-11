@@ -3,14 +3,15 @@ import { ComponentProps } from "../page-components";
 import ArrowButton from "../arrow-button";
 import { buttonComponentStyle } from "./styles.css";
 
-interface Props extends Sanity.Schema.ButtonComponent, ComponentProps {
+interface ButtonProps extends ComponentProps {
+  component: Sanity.Schema.ButtonComponent;
   className?: string;
 }
 
-export default function ButtonComponent(props: Props) {
+export default function ButtonComponent({ className, component, ...props }: ButtonProps) {
   return (
     <div className={buttonComponentStyle}>
-      <ArrowButton {...props} />
+      <ArrowButton className={className} {...component} {...props} />
     </div>
   );
 }

@@ -1,18 +1,21 @@
 import React from "react";
 import { ComponentProps } from "../page-components";
-import { SubpageQuery } from '../../lib/api/pages';
+import { PageQuery, SubpageQuery } from '../../lib/api/pages';
 import { subpagesListStyle } from './styles.css';
 import Link from '../link';
 
 interface Props extends ComponentProps {
-  subpages: Array<SubpageQuery>
+  component: Sanity.Schema.SubpagesComponent
+  subpages: Array<SubpageQuery>;
+  page: Partial<PageQuery>;
 }
 
-export default function SubpagesComponent({ page, subpages }: Props) {
+export default function Subpages({ page, subpages }: Props) {
+  console.log("TEST", subpages)
   if (subpages.length === 0) return null;
   return (
     <ul className={subpagesListStyle}>
-      {subpages.map(({ slug, title }) => <li>
+      {subpages.sort((a, b) => a.order - b.order).map(({ slug, title }) => <li>
         <Link href={`/${page.slug}/${slug}`}>
           {title}
         </Link>

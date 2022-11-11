@@ -6,11 +6,12 @@ export interface PageQuery extends Omit<Sanity.Schema.Page, "slug"> {
 
 export interface SubpageQuery {
   title: string;
+  order: number;
   slug: string;
 }
 
 export async function getAllPagesWithSlug(): Promise<Array<{ slug: string, parentSlug: string | null }>> {
-  return await client.fetch(`*[_type == "page"]{ 'slug': slug.current, 'parentSlug': parentPage->slug.current }`);
+  return await client.fetch(`*[_type == "page"]{ 'slug': slug.current, 'parentSlug': parent.page->slug.current }`);
 }
 
 export async function getPage(
@@ -37,9 +38,10 @@ export async function getSubpages(
 ): Promise<SubpageQuery> {
   return getClient(preview)
     .fetch(
-      `*[ _type == "page" && parentPage->slug.current == $slug ]{
+      `*[ _type == "page" && parent.page->slug.current == $slug ]{
       title,
       'slug': slug.current,
+      'order': parent.orderNo,
     }`,
       { slug }
     );

@@ -3,11 +3,11 @@ import { ComponentProps } from "../page-components";
 import Button from "../button";
 import Arrow from "../arrow";
 
-interface Props extends Sanity.Schema.ButtonComponent, ComponentProps {
+interface ArrowButtonProps extends Sanity.Schema.ButtonComponent, ComponentProps {
   className?: string;
 }
 
-export default function ArrowButton({ text, link, variant }: Props) {
+export default function ArrowButton({ text, link, variant }: ArrowButtonProps) {
   const secureVariant = variant || "secondary";
   return (
     <Button

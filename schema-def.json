@@ -573,9 +573,9 @@
           }
         },
         {
-          "name": "parentPage",
+          "name": "parent",
           "title": "Foreldreside",
-          "description": "Om dette er en underside, legg til foreldresiden her",
+          "description": "",
           "hidden": false,
           "readOnly": false,
           "codegen": {
@@ -586,29 +586,14 @@
             "codegen": {
               "required": false
             },
-            "description": "Om dette er en underside, legg til foreldresiden her",
+            "description": null,
             "hidden": false,
-            "name": "parentPage",
+            "name": "parent",
             "readOnly": false,
             "title": "Foreldreside",
             "hasValidation": false,
-            "type": "Reference",
-            "to": [
-              {
-                "codegen": {
-                  "required": false
-                },
-                "description": null,
-                "hidden": false,
-                "name": null,
-                "readOnly": false,
-                "title": null,
-                "hasValidation": false,
-                "to": "page",
-                "type": "RegistryReference"
-              }
-            ],
-            "weak": false
+            "type": "RegistryReference",
+            "to": "parentPage"
           }
         },
         {
@@ -1183,6 +1168,53 @@
               {
                 "title": "Page Updates",
                 "value": "pageUpdates"
+              },
+              {
+                "title": "Subpages",
+                "value": "subpages"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
+      "name": "subpages-component",
+      "readOnly": false,
+      "title": "Undersider",
+      "hasValidation": false,
+      "type": "Object",
+      "fields": [
+        {
+          "name": "variant",
+          "title": "Type liste",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "variant",
+            "readOnly": false,
+            "title": "Type liste",
+            "hasValidation": false,
+            "type": "String",
+            "list": [
+              {
+                "title": "Default",
+                "value": "default"
               }
             ]
           }
@@ -1484,6 +1516,83 @@
                 "markDefs": []
               }
             ],
+            "list": null
+          }
+        }
+      ]
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
+      "name": "parentPage",
+      "readOnly": false,
+      "title": "Foreldreside",
+      "hasValidation": false,
+      "type": "Object",
+      "fields": [
+        {
+          "name": "page",
+          "title": "Side",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "page",
+            "readOnly": false,
+            "title": "Side",
+            "hasValidation": false,
+            "type": "Reference",
+            "to": [
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "to": "page",
+                "type": "RegistryReference"
+              }
+            ],
+            "weak": false
+          }
+        },
+        {
+          "name": "orderNo",
+          "title": "Rekkefølge indeks",
+          "description": "Hvilken rekkefølge skal siden ha? (0 og oppover)",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Hvilken rekkefølge skal siden ha? (0 og oppover)",
+            "hidden": false,
+            "name": "orderNo",
+            "readOnly": false,
+            "title": "Rekkefølge indeks",
+            "hasValidation": false,
+            "type": "Number",
             "list": null
           }
         }

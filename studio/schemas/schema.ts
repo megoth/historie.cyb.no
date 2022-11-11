@@ -20,6 +20,7 @@ import navigationItem from "./navigationItem";
 import dataComponent from "./dataComponent";
 import album from "./album";
 import albumImage from "./albumImage";
+import parentPage from "./parentPage";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -47,5 +48,6 @@ export default createSchema({
     navigation,
     album,
     albumImage,
+    parentPage,
   ]),
 });

@@ -134,10 +134,9 @@ Nødvendig
       };
 
       /**
-       * Foreldreside - `Reference`
-Om dette er en underside, legg til foreldresiden her
+       * Foreldreside - `RegistryReference`
        */
-      parentPage?: Sanity.Reference<Page>;
+      parent?: ParentPage;
 
       /**
        * Beskrivelse - `Text`
@@ -258,7 +257,16 @@ Nødvendig
        * Type - `String`
 Data må lenkes opp mot siden via kode
        */
-      type?: "albums" | "events" | "pageUpdates";
+      type?: "albums" | "events" | "pageUpdates" | "subpages";
+    };
+
+    type SubpagesComponent = {
+      _type: "subpages-component";
+
+      /**
+       * Type liste - `String`
+       */
+      variant?: "default";
     };
 
     type TextComponent = {
@@ -322,6 +330,21 @@ Nødvendig
        * Description - `Array`
        */
       description?: Array<Sanity.Keyed<Sanity.Block>>;
+    };
+
+    type ParentPage = {
+      _type: "parentPage";
+
+      /**
+       * Side - `Reference`
+       */
+      page?: Sanity.Reference<Page>;
+
+      /**
+       * Rekkefølge indeks - `Number`
+Hvilken rekkefølge skal siden ha? (0 og oppover)
+       */
+      orderNo?: number;
     };
 
     type Document = Event | Source | SiteSettings | Page | Navigation | Album;

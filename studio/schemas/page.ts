@@ -36,11 +36,9 @@ export default {
       },
     },
     {
-      name: "parentPage",
+      name: "parent",
       title: "Foreldreside",
-      description: "Om dette er en underside, legg til foreldresiden her",
-      type: "reference",
-      to: [{ type: "page" }],
+      type: "parentPage",
     },
     {
       name: "description",

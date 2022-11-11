@@ -7,7 +7,7 @@ import DataComponent from "../data-component";
 import { DataModules } from "../../lib/api/dataModules";
 import Container from "../container";
 import { ComponentTypes } from '../../studio/schemas/page';
-import SubpagesComponent from '../subpages-component';
+import SubpagesComponent from '../subpages';
 
 interface Props extends DataModules {
   page?: Partial<PageQuery>;
@@ -15,7 +15,6 @@ interface Props extends DataModules {
 
 export interface ComponentProps {
   componentIndex: number;
-  page: Partial<PageQuery>;
 }
 
 export default function PageComponents({ page, ...data }: Props) {
@@ -26,34 +25,50 @@ export default function PageComponents({ page, ...data }: Props) {
     <>
       {page.components?.map((component, index) => {
         const key = `page-component-${index}-${component._type}`;
-        const props = { ...component, ...data, page, componentIndex: index };
         switch (component._type) {
           case ComponentTypes.BUTTON:
             return (
               <Container key={key}>
-                <ButtonComponent {...props} />
+                <ButtonComponent
+                  component={component as Sanity.Schema.ButtonComponent}
+                  componentIndex={index}/>
               </Container>
             );
           case ComponentTypes.BUTTONS:
             return (
               <Container key={key}>
-                <ButtonsComponent {...props} />
+                <ButtonsComponent
+                  component={component as Sanity.Schema.ButtonsComponent}
+                  componentIndex={index}/>
               </Container>
             );
           case ComponentTypes.DATA:
             return (
-              <DataComponent {...props} key={key} />
-            );
-          case ComponentTypes.TEXT:
-            return (
-              <Container key={key}>
-                <TextComponent {...props} />
-              </Container>
+              <DataComponent
+                {...data}
+                component={component as Sanity.Schema.DataComponent}
+                componentIndex={index}
+                key={key}
+                page={page}/>
             );
           case ComponentTypes.SUBPAGES:
             return (
               <Container key={key}>
-                <SubpagesComponent {...props} />
+                <SubpagesComponent
+                  component={component as Sanity.Schema.SubpagesComponent}
+                  componentIndex={index}
+                  page={page}
+                  subpages={data.subpages}
+                />
+              </Container>
+            );
+          case ComponentTypes.TEXT:
+            return (
+              <Container key={key}>
+                <TextComponent
+                  component={component as Sanity.Schema.TextComponent}
+                  componentIndex={index}
+                />
               </Container>
             );
           default:
