@@ -1,0 +1,47 @@
+{
+  "name": "cyb-historie",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "npm run build:sanity && pwd && npm run build:web",
+    "export": "npm run build && next export",
+    "build:web": "next build",
+    "start:web": "next start",
+    "build:sanity": "cd studio && npx @sanity/cli build ../public/studio -y && cd ..",
+    "start:sanity": "cp .env ./studio/.env.development && cd studio && npx @sanity/cli start",
+    "postinstall": "lerna bootstrap",
+    "lint": "prettier --check \"**/*.ts(x)\"",
+    "lint:fix": "prettier --write \"**/*.ts(x)\"",
+    "ci": "npm run lint",
+    "prepare": "husky install",
+    "generate:types": "npx sanity-codegen schema-codegen"
+  },
+  "dependencies": {
+    "@sanity/block-content-to-markdown": "^0.0.5",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^3.1.0",
+    "@sanity/image-url": "^1.0.1",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "next": "^12.3.1",
+    "next-sanity": "^0.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.36.1",
+    "react-icons": "^4.4.0",
+    "swr": "^1.3.0"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^2.34.0",
+    "@types/node": "^18.8.2",
+    "@vanilla-extract/babel-plugin": "^1.2.0",
+    "@vanilla-extract/css": "^1.9.1",
+    "@vanilla-extract/next-plugin": "^2.1.1",
+    "husky": "^8.0.1",
+    "lerna": "^5.5.4",
+    "prettier": "^2.7.1",
+    "sanity-codegen": "^1.0.0-alpha.11",
+    "typescript": "^4.8.4"
+  }
+}
