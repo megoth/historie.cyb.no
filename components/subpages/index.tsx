@@ -11,7 +11,6 @@ interface Props extends ComponentProps {
 }
 
 export default function Subpages({ page, subpages }: Props) {
-  console.log("TEST", subpages)
   if (subpages.length === 0) return null;
   return (
     <ul className={subpagesListStyle}>
