@@ -573,6 +573,45 @@
           }
         },
         {
+          "name": "parentPage",
+          "title": "Foreldreside",
+          "description": "Om dette er en underside, legg til foreldresiden her",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Om dette er en underside, legg til foreldresiden her",
+            "hidden": false,
+            "name": "parentPage",
+            "readOnly": false,
+            "title": "Foreldreside",
+            "hasValidation": false,
+            "type": "Reference",
+            "to": [
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "to": "page",
+                "type": "RegistryReference"
+              }
+            ],
+            "weak": false
+          }
+        },
+        {
           "name": "description",
           "title": "Beskrivelse",
           "description": "",

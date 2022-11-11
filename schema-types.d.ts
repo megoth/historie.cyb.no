@@ -134,6 +134,12 @@ Nødvendig
       };
 
       /**
+       * Foreldreside - `Reference`
+Om dette er en underside, legg til foreldresiden her
+       */
+      parentPage?: Sanity.Reference<Page>;
+
+      /**
        * Beskrivelse - `Text`
        */
       description?: string;

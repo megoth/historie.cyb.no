@@ -4,8 +4,8 @@ export interface PageQuery extends Omit<Sanity.Schema.Page, "slug"> {
   slug: string;
 }
 
-export async function getAllPagesWithSlug(): Promise<Array<{ slug: string }>> {
-  return await client.fetch(`*[_type == "page"]{ 'slug': slug.current }`);
+export async function getAllPagesWithSlug(): Promise<Array<{ slug: string, parentSlug: string | null }>> {
+  return await client.fetch(`*[_type == "page"]{ 'slug': slug.current, 'parentSlug': parentPage->slug.current }`);
 }
 
 export async function getPage(

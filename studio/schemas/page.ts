@@ -1,5 +1,4 @@
 import { RiPagesLine } from "react-icons/ri";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 export default {
   name: "page",
@@ -27,6 +26,13 @@ export default {
         source: "title",
         maxLength: 96,
       },
+    },
+    {
+      name: "parentPage",
+      title: "Foreldreside",
+      description: "Om dette er en underside, legg til foreldresiden her",
+      type: "reference",
+      to: [{ type: "page" }],
     },
     {
       name: "description",
