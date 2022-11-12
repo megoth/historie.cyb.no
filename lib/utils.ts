@@ -4,6 +4,10 @@ export function onlyUnique(value, index, self): boolean {
   return self.indexOf(value) === index;
 }
 
+export function createUniqueArray(array, propertyName) {
+  return array.filter((e, i) => array.findIndex(a => a[propertyName] === e[propertyName]) === i);
+}
+
 export function getArrayFromRouterQuery(
   value: null | string | string[]
 ): string[] {

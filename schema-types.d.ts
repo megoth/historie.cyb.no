@@ -212,6 +212,94 @@ Nødvendig
       images?: Array<Sanity.Keyed<AlbumImage>>;
     }
 
+    /**
+     * Person
+     */
+    interface Person extends Sanity.Document {
+      _type: "person";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Brukernavn - `Slug`
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Profil - `Array`
+       */
+      profile?: Array<Sanity.Keyed<Sanity.Block>>;
+    }
+
+    /**
+     * Gruppe
+     */
+    interface Group extends Sanity.Document {
+      _type: "group";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Rekkefølge - `Number`
+Nødvendig (0 og oppover)
+       */
+      order?: number;
+
+      /**
+       * Slug - `Slug`
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Beskrivelse - `Array`
+       */
+      description?: Array<Sanity.Keyed<Sanity.Block>>;
+    }
+
+    /**
+     * Gruppesammensetning
+     */
+    interface GroupConstellation extends Sanity.Document {
+      _type: "groupConstellation";
+
+      /**
+       * Gruppe - `Reference`
+Nødvendig
+       */
+      group?: Sanity.Reference<Group>;
+
+      /**
+       * År - `Date`
+Nødvendig
+       */
+      year?: string;
+
+      /**
+       * Semester - `String`
+Nødvendig
+       */
+      semester?: "vår" | "høst";
+
+      /**
+       * Medlemmer - `Array`
+       */
+      members?: Array<Sanity.Keyed<Membership>>;
+    }
+
     type BlockContent = Array<
       | Sanity.Keyed<Sanity.Block>
       | Sanity.Keyed<{
@@ -347,6 +435,30 @@ Hvilken rekkefølge skal siden ha? (0 og oppover)
       orderNo?: number;
     };
 
-    type Document = Event | Source | SiteSettings | Page | Navigation | Album;
+    type Membership = {
+      _type: "membership";
+
+      /**
+       * Person - `Reference`
+Nødvendig
+       */
+      person?: Sanity.Reference<Person>;
+
+      /**
+       * Tittel - `String`
+       */
+      title?: string;
+    };
+
+    type Document =
+      | Event
+      | Source
+      | SiteSettings
+      | Page
+      | Navigation
+      | Album
+      | Person
+      | Group
+      | GroupConstellation;
   }
 }

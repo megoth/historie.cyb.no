@@ -21,6 +21,10 @@ import dataComponent from "./dataComponent";
 import album from "./album";
 import albumImage from "./albumImage";
 import parentPage from "./parentPage";
+import group from "./group"
+import groupConstellation from "./groupConstellation"
+import membership from "./membership"
+import person from "./person"
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -49,5 +53,9 @@ export default createSchema({
     album,
     albumImage,
     parentPage,
+    person,
+    group,
+    membership,
+    groupConstellation,
   ]),
 });
