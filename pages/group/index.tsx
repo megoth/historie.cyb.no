@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/layout";
 import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
-import GroupConstellations from '../../components/groupConstellations';
+import GroupConstellations from '../../components/group-constellations';
 import { getAllGroupConstellations, GroupConstellationQuery } from '../../lib/api/group-constellations';
 
 interface Props extends SiteSettingsPage {
