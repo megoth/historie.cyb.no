@@ -10,14 +10,16 @@ import { NavigationProvider } from "../../contexts/navigationContext";
 import NavigationModal from "../navigation-modal";
 import usePopState from "../../hooks/usePopState";
 import { useRouter } from "next/router";
+import Breadcrumbs, { Breadcrumb } from '../breadcrumbs';
 
 interface Props {
   children: ReactNode;
   pageTitle?: string;
   siteSettings?: SiteSettingsQuery;
+  crumbs?: Array<Breadcrumb>
 }
 
-export default function Layout({ children, pageTitle, siteSettings }: Props) {
+export default function Layout({ children, pageTitle, siteSettings, crumbs }: Props) {
   const popStateEvent = usePopState();
   const router = useRouter();
   const title = pageTitle
@@ -42,9 +44,10 @@ export default function Layout({ children, pageTitle, siteSettings }: Props) {
           <Header />
           <NavigationModal siteSettings={siteSettings} />
           <main>
-            {pageTitle && (
+            {(pageTitle || crumbs?.length) && (
               <Container>
-                <h1>{pageTitle}</h1>
+                {crumbs?.length ? <Breadcrumbs crumbs={crumbs} /> : null}
+                {pageTitle && <h1>{pageTitle}</h1>}
               </Container>
             )}
             {children}

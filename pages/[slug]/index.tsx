@@ -12,12 +12,16 @@ import { join } from 'path';
 interface Props extends SiteSettingsPage {
   page: PageQuery,
   subpages: Array<SubpageQuery>,
+  parentPage?: PageQuery,
 }
 
-export default function CustomPage({ page, subpages, siteSettings }: Props) {
+export default function CustomPage({ page, subpages, parentPage, siteSettings }: Props) {
   const router = useRouter();
+  const crumbs = parentPage ? [
+    { href: `/${parentPage.slug}`, text: parentPage.title}
+  ] : [];
   return (
-    <Layout pageTitle={page.title} siteSettings={siteSettings}>
+    <Layout pageTitle={page.title} siteSettings={siteSettings} crumbs={crumbs}>
       {router.isFallback ? <Loading/> : <PageComponents page={page} subpages={subpages}/>}
     </Layout>
   );

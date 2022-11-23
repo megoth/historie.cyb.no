@@ -12,19 +12,25 @@ import {
 } from "../../../lib/api/gallery";
 import Loading from "../../../components/loading";
 import AlbumImage from '../../../components/album-image';
+import { getPage, PageQuery } from '../../../lib/api/pages';
 
 interface Props extends SiteSettingsPage {
+  gallery: PageQuery;
   album: AlbumWithImagesQuery;
   photo: AlbumImageQuery;
 }
 
-export default function AlbumImagePage({ album, photo, siteSettings }: Props) {
+export default function AlbumImagePage({ gallery, album, photo, siteSettings }: Props) {
   const router = useRouter();
   if ((!router.isFallback && !album?.slug) || !album || !photo) {
     return <ErrorPage statusCode={404} />;
   }
+  const crumbs = [
+    { href: "/gallery", text: gallery?.title || "Galleri" },
+    { href: `/gallery/${album.slug}`, text: album.name }
+  ]
   return (
-    <Layout siteSettings={siteSettings}>
+    <Layout siteSettings={siteSettings} crumbs={crumbs}>
       {router.isFallback ? <Loading /> : <AlbumImage photo={photo} />}
     </Layout>
   );
@@ -34,14 +40,16 @@ export const getStaticProps: GetStaticProps = async ({
                                                        params,
                                                        preview = false,
                                                      }) => {
-  const [album, siteSettings] = await Promise.all([
+  const [album, siteSettings, gallery] = await Promise.all([
     getAlbumWithImages(params!.slug, preview),
     getSiteSettings(preview),
+    getPage("gallery", preview),
   ]);
   const photo = album.images.find((image) => image._key === params!.slug2);
   return {
     props: {
       preview,
+      gallery,
       album,
       photo,
       siteSettings,
