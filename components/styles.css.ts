@@ -1,5 +1,7 @@
 import { createTheme, globalStyle } from "@vanilla-extract/css";
 
+export const maxPageWidth = 800;
+
 export const [themeClass, vars] = createTheme({
   color: {
     base: "#212020",
@@ -33,7 +35,7 @@ export const [themeClass, vars] = createTheme({
   },
   pageWidth: {
     medium: "600px",
-    large: "800px",
+    large: `${maxPageWidth}px`,
   },
   zIndex: {
     base: "0",

@@ -18,15 +18,11 @@ export default function Albums({ albums }: Props) {
           .map(({ slug, mainImage, name }) => (
             <li key={slug}>
               <Link
-                as={`/gallery/${slug}`}
-                href="/gallery/[slug]"
+                href={`/gallery/${slug}`}
                 className={linkStyle}
               >
                 <img
-                  src={
-                    imageBuilder(mainImage).width(256).height(200).url() ||
-                    undefined
-                  }
+                  src={imageBuilder(mainImage).width(256).height(200).url()}
                 />
                 <div>{name}</div>
               </Link>

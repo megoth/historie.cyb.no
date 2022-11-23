@@ -15,10 +15,10 @@ export default function Album({ album }: Props) {
       <ul className={listStyle}>
         {album.images?.map((photo, index) => (
           <li key={`${album.slug}-${index}`}>
-            <Link href={imageBuilder(photo.image).url() || undefined}>
+            <Link href={`/gallery/${album.slug}/${photo._key}`}>
               <img
                 src={
-                  imageBuilder(photo.image).width(256).url() || undefined
+                  imageBuilder(photo.image).height(200).width(256).url() || undefined
                 }
                 alt={photo.alt}
               />

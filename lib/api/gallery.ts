@@ -7,10 +7,14 @@ export interface AlbumQuery
   mainImage: SanityImageSource;
 }
 
+export interface AlbumImageQuery extends Sanity.Schema.Photo {
+  _key: string;
+}
+
 export interface AlbumWithImagesQuery
   extends Omit<Sanity.Schema.Album, "slug" | "images"> {
   slug: string;
-  images: Array<Sanity.Schema.Photo>
+  images: Array<AlbumImageQuery>
 }
 
 export async function getAllAlbums(
@@ -27,6 +31,16 @@ export async function getAllAlbums(
 
 export async function getAllAlbumsWithSlug(): Promise<Array<{ slug: string }>> {
   return await client.fetch(`*[_type == "album"]{ 'slug': slug.current }`);
+}
+
+export async function getAllAlbumsWithSlugAndImages(): Promise<Array<{
+  slug: string,
+  images: Array<{ _key: string }>
+}>> {
+  return await client.fetch(`*[_type == "album"]{
+    'slug': slug.current,
+    'images': images[]
+  }`);
 }
 
 export async function getAlbumWithImages(

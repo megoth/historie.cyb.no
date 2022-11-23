@@ -1,16 +1,16 @@
 import React from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import Layout from "../../components/layout";
+import Layout from "../../../components/layout";
 import { GetStaticProps } from "next";
-import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
+import { getSiteSettings, SiteSettingsPage } from "../../../lib/api/site-settings";
 import {
   AlbumWithImagesQuery,
   getAlbumWithImages,
   getAllAlbumsWithSlug,
-} from "../../lib/api/gallery";
-import Loading from "../../components/loading";
-import Album from "../../components/album";
+} from "../../../lib/api/gallery";
+import Loading from "../../../components/loading";
+import Album from "../../../components/album";
 
 interface Props extends SiteSettingsPage {
   album: AlbumWithImagesQuery;
