@@ -31,7 +31,7 @@ export default function AlbumImagePage({ gallery, album, photo, siteSettings }: 
   ]
   return (
     <Layout siteSettings={siteSettings} crumbs={crumbs}>
-      {router.isFallback ? <Loading /> : <AlbumImage photo={photo} />}
+      {router.isFallback ? <Loading /> : <AlbumImage album={album} photo={photo} />}
     </Layout>
   );
 }

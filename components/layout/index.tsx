@@ -20,22 +20,9 @@ interface Props {
 }
 
 export default function Layout({ children, pageTitle, siteSettings, crumbs }: Props) {
-  const popStateEvent = usePopState();
-  const router = useRouter();
   const title = pageTitle
     ? `${pageTitle} - ${siteSettings?.title}`
     : siteSettings?.title;
-
-  useEffect(() => {
-    if (
-      popStateEvent?.state.pathname &&
-      popStateEvent?.state.pathname !== router?.pathname
-    ) {
-      router.push(
-        `${popStateEvent?.state.pathname}?by=${popStateEvent?.state.view}`
-      );
-    }
-  }, [popStateEvent]);
   return (
     <NavigationProvider>
       <div className={layoutStyle}>
@@ -43,7 +30,7 @@ export default function Layout({ children, pageTitle, siteSettings, crumbs }: Pr
         <div>
           <Header />
           <NavigationModal siteSettings={siteSettings} />
-          <main>
+          <main id={"content"}>
             {(pageTitle || crumbs?.length) && (
               <Container>
                 {crumbs?.length ? <Breadcrumbs crumbs={crumbs} /> : null}

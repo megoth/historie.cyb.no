@@ -15,7 +15,7 @@ export default function Album({ album }: Props) {
       <ul className={listStyle}>
         {album.images?.map((photo, index) => (
           <li key={`${album.slug}-${index}`}>
-            <Link href={`/gallery/${album.slug}/${photo._key}`}>
+            <Link href={`/gallery/${album.slug}/${photo._key}#content`}>
               <img
                 src={
                   imageBuilder(photo.image).height(200).width(256).url() || undefined
