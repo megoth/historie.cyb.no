@@ -30,21 +30,16 @@ export default {
     {
       name: "images",
       title: "Bilder",
+      description: "Øverste bildet vil bli thumbnail for album",
       type: "array",
-      of: [{ type: "albumImage" }],
+      of: [{ type: "photo" }],
     },
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "slug.current",
-      images: "images",
-    },
-    prepare(selection) {
-      return {
-        ...selection,
-        media: selection.images?.[0]?.image || BiPhotoAlbum,
-      };
+      media: "images[0].image",
     },
   },
 };

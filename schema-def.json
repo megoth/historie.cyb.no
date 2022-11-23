@@ -704,6 +704,19 @@
                 "title": null,
                 "hasValidation": false,
                 "type": "RegistryReference",
+                "to": "image-component"
+              },
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "type": "RegistryReference",
                 "to": "subpages-component"
               }
             ],
@@ -897,7 +910,7 @@
         {
           "name": "images",
           "title": "Bilder",
-          "description": "",
+          "description": "Øverste bildet vil bli thumbnail for album",
           "hidden": false,
           "readOnly": false,
           "codegen": {
@@ -908,7 +921,7 @@
             "codegen": {
               "required": false
             },
-            "description": null,
+            "description": "Øverste bildet vil bli thumbnail for album",
             "hidden": false,
             "name": "images",
             "readOnly": false,
@@ -927,7 +940,7 @@
                 "title": null,
                 "hasValidation": false,
                 "type": "RegistryReference",
-                "to": "albumImage"
+                "to": "photo"
               }
             ],
             "list": null
@@ -1558,6 +1571,44 @@
       },
       "description": null,
       "hidden": false,
+      "name": "image-component",
+      "readOnly": false,
+      "title": "Bilde",
+      "hasValidation": false,
+      "type": "Object",
+      "fields": [
+        {
+          "name": "photo",
+          "title": "Bilde",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "photo",
+            "readOnly": false,
+            "title": "Bilde",
+            "hasValidation": false,
+            "type": "RegistryReference",
+            "to": "photo"
+          }
+        }
+      ]
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
       "name": "subpages-component",
       "readOnly": false,
       "title": "Undersider",
@@ -1823,7 +1874,7 @@
       },
       "description": null,
       "hidden": false,
-      "name": "albumImage",
+      "name": "photo",
       "readOnly": false,
       "title": "Bilde",
       "hasValidation": false,
@@ -1831,7 +1882,7 @@
       "fields": [
         {
           "name": "image",
-          "title": "image",
+          "title": "Bilde",
           "description": "Nødvendig",
           "hidden": false,
           "readOnly": false,
@@ -1847,15 +1898,39 @@
             "hidden": false,
             "name": "image",
             "readOnly": false,
-            "title": "image",
+            "title": "Bilde",
             "hasValidation": false,
             "type": "Image",
             "fields": null
           }
         },
         {
+          "name": "alt",
+          "title": "Kort beskrivelse",
+          "description": "Nødvendig",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Nødvendig",
+            "hidden": false,
+            "name": "alt",
+            "readOnly": false,
+            "title": "Kort beskrivelse",
+            "hasValidation": false,
+            "type": "String",
+            "list": null
+          }
+        },
+        {
           "name": "description",
-          "title": "Description",
+          "title": "Lang beskrivelse",
           "description": "",
           "hidden": false,
           "readOnly": false,
@@ -1871,7 +1946,7 @@
             "hidden": false,
             "name": "description",
             "readOnly": false,
-            "title": "Description",
+            "title": "Lang beskrivelse",
             "hasValidation": false,
             "type": "Array",
             "of": [

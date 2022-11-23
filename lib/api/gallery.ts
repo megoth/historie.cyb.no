@@ -8,8 +8,9 @@ export interface AlbumQuery
 }
 
 export interface AlbumWithImagesQuery
-  extends Omit<Sanity.Schema.Album, "slug"> {
+  extends Omit<Sanity.Schema.Album, "slug" | "images"> {
   slug: string;
+  images: Array<Sanity.Schema.Photo>
 }
 
 export async function getAllAlbums(
@@ -37,7 +38,7 @@ export async function getAlbumWithImages(
       `*[ _type == "album" && slug.current == $slug ]{
       name,
       'slug': slug.current,
-      images,
+      'images': images[],
     }`,
       { slug }
     )

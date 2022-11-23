@@ -151,6 +151,7 @@ Nødvendig
         | Sanity.Keyed<ButtonComponent>
         | Sanity.Keyed<ButtonsComponent>
         | Sanity.Keyed<DataComponent>
+        | Sanity.Keyed<ImageComponent>
         | Sanity.Keyed<SubpagesComponent>
       >;
     }
@@ -208,8 +209,9 @@ Nødvendig
 
       /**
        * Bilder - `Array`
+Øverste bildet vil bli thumbnail for album
        */
-      images?: Array<Sanity.Keyed<AlbumImage>>;
+      images?: Array<Sanity.Keyed<Photo>>;
     }
 
     /**
@@ -348,6 +350,15 @@ Data må lenkes opp mot siden via kode
       type?: "albums" | "events" | "pageUpdates" | "subpages";
     };
 
+    type ImageComponent = {
+      _type: "image-component";
+
+      /**
+       * Bilde - `RegistryReference`
+       */
+      photo?: Photo;
+    };
+
     type SubpagesComponent = {
       _type: "subpages-component";
 
@@ -401,11 +412,11 @@ Select pages for navigation
       navigationItemUrl?: Link;
     };
 
-    type AlbumImage = {
-      _type: "albumImage";
+    type Photo = {
+      _type: "photo";
 
       /**
-       * image - `Image`
+       * Bilde - `Image`
 Nødvendig
        */
       image?: {
@@ -415,7 +426,13 @@ Nødvendig
       };
 
       /**
-       * Description - `Array`
+       * Kort beskrivelse - `String`
+Nødvendig
+       */
+      alt?: string;
+
+      /**
+       * Lang beskrivelse - `Array`
        */
       description?: Array<Sanity.Keyed<Sanity.Block>>;
     };

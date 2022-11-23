@@ -12,6 +12,7 @@ import siteSettings from "./siteSettings";
 import page from "./page";
 import buttonComponent from "./buttonComponent";
 import buttonsComponent from "./buttonsComponent";
+import imageComponent from "./imageComponent";
 import subpagesComponent from "./subpagesComponent";
 import textComponent from "./textComponent";
 import navigation from "./navigation";
@@ -19,7 +20,7 @@ import link from "./link";
 import navigationItem from "./navigationItem";
 import dataComponent from "./dataComponent";
 import album from "./album";
-import albumImage from "./albumImage";
+import photo from "./photo";
 import parentPage from "./parentPage";
 import group from "./group"
 import groupConstellation from "./groupConstellation"
@@ -45,13 +46,14 @@ export default createSchema({
     buttonComponent,
     buttonsComponent,
     dataComponent,
+    imageComponent,
     subpagesComponent,
     textComponent,
     link,
     navigationItem,
     navigation,
     album,
-    albumImage,
+    photo,
     parentPage,
     person,
     group,

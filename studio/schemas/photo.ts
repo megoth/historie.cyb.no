@@ -1,11 +1,14 @@
+import { RiImageLine } from "react-icons/ri";
+
 export default {
-  name: "albumImage",
+  name: "photo",
   title: "Bilde",
   type: "object",
+  icon: RiImageLine,
   fields: [
     {
       name: "image",
-      title: "image",
+      title: "Bilde",
       description: "Nødvendig",
       type: "image",
       options: {
@@ -13,8 +16,14 @@ export default {
       },
     },
     {
+      name: "alt",
+      title: "Kort beskrivelse",
+      description: "Nødvendig",
+      type: "string",
+    },
+    {
       name: "description",
-      title: "Description",
+      title: "Lang beskrivelse",
       type: "array",
       of: [
         {
@@ -28,14 +37,8 @@ export default {
   ],
   preview: {
     select: {
-      description: "description",
-      image: "image",
-    },
-    prepare({ description, image }) {
-      return {
-        title: description[0]?.children[0]?.text,
-        media: image,
-      };
+      title: "alt",
+      media: "image",
     },
   },
 };

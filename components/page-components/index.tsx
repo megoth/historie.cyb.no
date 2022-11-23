@@ -8,6 +8,7 @@ import { DataModules } from "../../lib/api/dataModules";
 import Container from "../container";
 import { ComponentTypes } from '../../studio/schemas/page';
 import SubpagesComponent from '../subpages';
+import PhotoComponent from '../photo-component';
 
 interface Props extends DataModules {
   page?: Partial<PageQuery>;
@@ -50,6 +51,13 @@ export default function PageComponents({ page, ...data }: Props) {
                 componentIndex={index}
                 key={key}
                 page={page}/>
+            );
+          case ComponentTypes.IMAGE:
+            return (
+              <PhotoComponent
+                component={component as Sanity.Schema.ImageComponent}
+                componentIndex={index}
+                key={key}/>
             );
           case ComponentTypes.SUBPAGES:
             return (
