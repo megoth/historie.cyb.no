@@ -6,6 +6,7 @@ export interface GroupConstellationQuery extends Omit<Sanity.Schema.GroupConstel
   group: GroupQuery;
   names: Array<string>;
   titles: Array<string>;
+  notes: Array<string>;
 }
 
 export function getAllGroupConstellations(preview: boolean): Promise<Array<GroupConstellationQuery>> {
@@ -16,6 +17,7 @@ export function getAllGroupConstellations(preview: boolean): Promise<Array<Group
     semester,
     'names':members[].person->name,
     'titles':members[].title,
+    'notes':members[].note
   }`);
 }
 

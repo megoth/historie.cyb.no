@@ -465,6 +465,11 @@ Nødvendig
        * Tittel - `String`
        */
       title?: string;
+
+      /**
+       * Notat - `String`
+       */
+      note?: string;
     };
 
     type Document =

@@ -18,6 +18,11 @@ export default {
       title: "Tittel",
       type: "string",
     },
+    {
+      name: "note",
+      title: "Notat",
+      type: "string",
+    },
   ],
   preview: {
     select: {

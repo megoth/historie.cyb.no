@@ -2121,6 +2121,30 @@
             "type": "String",
             "list": null
           }
+        },
+        {
+          "name": "note",
+          "title": "Notat",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "note",
+            "readOnly": false,
+            "title": "Notat",
+            "hasValidation": false,
+            "type": "String",
+            "list": null
+          }
         }
       ]
     }
