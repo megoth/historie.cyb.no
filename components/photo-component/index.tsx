@@ -4,7 +4,7 @@ import Container from '../container';
 import { imageBuilder } from '../../lib/sanity';
 import { captionStyle, figureStyle } from './styles.css';
 import TextBlock from '../text-block';
-import { asFullSize } from '../../lib/image';
+import { asFullSize } from '../../lib/images';
 import Link from "../link";
 
 interface Props extends ComponentProps {

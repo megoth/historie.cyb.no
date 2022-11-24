@@ -4,7 +4,7 @@ import { imageBuilder } from "../../lib/sanity";
 import Container from "../container";
 import { linkStyle, listStyle } from "./styles.css";
 import Link from "../link";
-import { asThumbnail } from '../../lib/image';
+import { asThumbnail } from '../../lib/images';
 
 interface Props {
   albums: Array<AlbumQuery>;

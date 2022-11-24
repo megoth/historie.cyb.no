@@ -3,7 +3,8 @@ import { getUniqueGroups, GroupConstellationQuery } from '../../lib/api/group-co
 import Container from '../container';
 import { getGroupConstellations } from '../../lib/api/group';
 import { listStyle, nameStyle } from './styles.css';
-import { capitalizeFirst } from '../../lib/string';
+import { capitalizeFirst } from '../../lib/strings';
+import { getIdForGroup } from '../../lib/urls';
 
 interface Props {
   constellations: Array<GroupConstellationQuery>
@@ -26,8 +27,10 @@ export default function GroupConstellations({ constellations }: Props) {
           <h2>{group.name}</h2>
           <ul className={listStyle}>
             {getGroupConstellations(group, constellations).map((constellation) => (
-              <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}`}>
-                <h3>{capitalizeFirst(constellation.semester)} {constellation.year.substring(0, 4)}</h3>
+              <li key={getIdForGroup(group.slug.current, constellation.year, constellation.semester)}>
+                <h3 id={getIdForGroup(group.slug.current, constellation.year, constellation.semester)}>
+                  {capitalizeFirst(constellation.semester)} {constellation.year.substring(0, 4)}
+                </h3>
                 <ul>
                   {constellation.names.map((name, index) => (
                     <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}-${name}`}>

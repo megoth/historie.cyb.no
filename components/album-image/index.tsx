@@ -6,7 +6,7 @@ import TextBlock from '../text-block';
 import Link from '../link';
 import { photoImgStyle, albumPhotoLinkStyle, albumPhotosStyle, albumPhotoCurrentLinkStyle, albumPhotosTitle } from './styles.css';
 import clsx from 'clsx';
-import { asFullSize, asThumbnail } from '../../lib/image';
+import { asFullSize, asThumbnail } from '../../lib/images';
 
 interface AlbumImageProps {
   album: AlbumWithImagesQuery;

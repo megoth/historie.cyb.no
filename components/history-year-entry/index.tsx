@@ -27,8 +27,9 @@ export default function HistoryYearEntry({
   year,
   expanded,
 }: Props) {
-  const majorEvents = events.filter((event) => event.major);
-  const minorEvents = events.filter((event) => !event.major);
+  const majorEvents = events.filter((event) => event.major && !event.semester);
+  const minorEvents = events.filter((event) => !event.major && !event.semester);
+  const semesterEvents = events.filter((event) => event.semester)
   const yearAsString = year.toString();
   const { years, toggleYear } = useContext(EventsContext);
   const router = useRouter();
@@ -89,6 +90,19 @@ export default function HistoryYearEntry({
                   <HistoryYearListItem
                     event={event}
                     key={`minor-event-${event.year}-${index}`}
+                  />
+                ))}
+              </ul>
+            </li>
+          )}
+          {semesterEvents.length > 0 && (
+            <li key={`semester-events-${year}`}>
+              Grupper
+              <ul className={yearListStyle}>
+                {semesterEvents.map((event, index) => (
+                  <HistoryYearListItem
+                    event={event}
+                    key={`semester-event-${event.year}-${index}`}
                   />
                 ))}
               </ul>
