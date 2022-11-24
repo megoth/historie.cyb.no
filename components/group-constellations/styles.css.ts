@@ -1,5 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
-import { vars } from "../styles.css";
+import { style } from "@vanilla-extract/css";
 
 export const listStyle = style({
   display: "grid",
@@ -11,7 +10,3 @@ export const listStyle = style({
     },
   },
 });
-
-export const nameStyle = style({
-  marginLeft: "0.5em",
-})
