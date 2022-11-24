@@ -1,10 +1,20 @@
-import React from "react";
+import React, { Fragment, ReactNode } from "react";
 import { getUniqueGroups, GroupConstellationQuery } from '../../lib/api/group-constellations';
 import Container from '../container';
 import { getGroupConstellations } from '../../lib/api/group';
+import { listStyle, nameStyle } from './styles.css';
+import { capitalizeFirst } from '../../lib/string';
 
 interface Props {
   constellations: Array<GroupConstellationQuery>
+}
+
+function getTitle(constellation: GroupConstellationQuery, index: number): ReactNode {
+  const currentTitle = constellation.titles[index] || "Medlem";
+  const previousTitle = constellation.titles[index - 1] || "Medlem";
+  return index === 0 || currentTitle !== previousTitle ?
+    <strong>{currentTitle}: </strong> :
+    <Fragment/>;
 }
 
 export default function GroupConstellations({ constellations }: Props) {
@@ -14,13 +24,16 @@ export default function GroupConstellations({ constellations }: Props) {
       {groups.map((group) => (
         <section key={group.slug.current}>
           <h2>{group.name}</h2>
-          <ul>
+          <ul className={listStyle}>
             {getGroupConstellations(group, constellations).map((constellation) => (
               <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}`}>
-                <h3>{constellation.group.name} {constellation.semester} {constellation.year.substring(0, 4)}</h3>
+                <h3>{capitalizeFirst(constellation.semester)} {constellation.year.substring(0, 4)}</h3>
                 <ul>
                   {constellation.names.map((name, index) => (
-                    <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}-${name}`}>{name} ({constellation.titles[index] || "Medlem"})</li>
+                    <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}-${name}`}>
+                      {getTitle(constellation, index)}
+                      <span className={nameStyle}>{name}</span>
+                    </li>
                   ))}
                 </ul>
               </li>
