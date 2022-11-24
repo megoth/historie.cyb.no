@@ -38,7 +38,7 @@ export async function getAllEventsForHistoryPage(
   return [
     ...events.map(({ slug, ...data }) => ({ ...data, href: `/history/${slug}` })),
     ...groups.map(({ group, year, semester, leader }) => ({
-      name: `${group.name} ledes av ${leader}`,
+      name: `${group.name} ledes av ${leader || "ukjent"}`,
       year,
       semester,
       href: getUrlForGroup(group.slug.current, year, semester)
