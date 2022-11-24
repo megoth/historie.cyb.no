@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function TextBlock({ text, className }: Props) {
-  return (
+  return text && (
     <div className={cn(textBlockStyle, className)}>
       <BlockContent
         blocks={text}

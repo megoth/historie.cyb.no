@@ -5,11 +5,11 @@ import { nameStyle } from './styles.css';
 export default function Member({ group, constellation, name, index}) {
   const note = constellation.notes[index];
   return (
-    <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}-${name}`}>
+    <>
       {getTitle(constellation, index)}
       <span className={nameStyle}>{name}</span>
       {note && <span> ({note})</span>}
-    </li>
+    </>
   )
 }
 

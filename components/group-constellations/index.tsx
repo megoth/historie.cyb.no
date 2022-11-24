@@ -12,7 +12,9 @@ export default function GroupConstellations({ constellations }: Props) {
   return (
     <Container>
       {groups.map((group) => (
-        <Group group={group} constellations={constellations} />
+        <section key={group.slug.current}>
+          <Group group={group} constellations={constellations} />
+        </section>
       ))}
     </Container>
   );

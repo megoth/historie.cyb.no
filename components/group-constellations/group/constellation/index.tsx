@@ -12,20 +12,22 @@ interface ConstellationProps {
 
 export default function Constellation({ group, constellation}: ConstellationProps) {
   return (
-    <li key={getIdForGroup(group.slug.current, constellation.year, constellation.semester)}>
+    <>
       <h3 id={getIdForGroup(group.slug.current, constellation.year, constellation.semester)}>
         {capitalizeFirst(constellation.semester)} {constellation.year.substring(0, 4)}
       </h3>
       {constellation.names?.length > 0 && (
         <ul>
           {constellation.names.map((name, index) => (
-            <Member group={group} constellation={constellation} name={name} index={index} />
+            <li key={`${group.slug.current}-${constellation.year}-${constellation.semester}-${name}`}>
+              <Member group={group} constellation={constellation} name={name} index={index} />
+            </li>
           ))}
         </ul>
       )}
       {!constellation.names && (
         <div>(finner ikke styrets sammensetn.)</div>
       )}
-    </li>
+    </>
   )
 }
