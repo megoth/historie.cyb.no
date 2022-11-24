@@ -4,9 +4,9 @@ import Container from "../container";
 import { imageBuilder } from "../../lib/sanity";
 import TextBlock from '../text-block';
 import Link from '../link';
-import { maxPageWidth } from '../styles.css';
 import { photoImgStyle, albumPhotoLinkStyle, albumPhotosStyle, albumPhotoCurrentLinkStyle, albumPhotosTitle } from './styles.css';
 import clsx from 'clsx';
+import { asFullSize, asThumbnail } from '../../lib/image';
 
 interface AlbumImageProps {
   album: AlbumWithImagesQuery;
@@ -24,7 +24,7 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
       <Link href={image.url()}>
         <img
           id={"image"}
-          src={image.maxWidth(maxPageWidth).url()}
+          src={asFullSize(image).url()}
           alt={photo.alt}
           className={photoImgStyle}
         />
@@ -46,7 +46,7 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
                   [albumPhotoCurrentLinkStyle]: albumPhoto._key === photo._key
                 })}>
                   <img
-                    src={imageBuilder(albumPhoto.image).height(200).width(256).url()}
+                    src={asThumbnail(imageBuilder(albumPhoto.image)).url()}
                     alt={albumPhoto.alt}
                     className={photoImgStyle}/>
                 </Link>

@@ -1,6 +1,8 @@
 import { createTheme, globalStyle } from "@vanilla-extract/css";
 
 export const maxPageWidth = 800;
+export const thumbnailWidth = 256;
+export const thumbnailHeight = thumbnailWidth / 16 * 9;
 
 export const [themeClass, vars] = createTheme({
   color: {

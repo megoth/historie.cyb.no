@@ -4,6 +4,7 @@ import { imageBuilder } from "../../lib/sanity";
 import Container from "../container";
 import { linkStyle, listStyle } from "./styles.css";
 import Link from "../link";
+import { asThumbnail } from '../../lib/image';
 
 interface Props {
   albums: Array<AlbumQuery>;
@@ -22,7 +23,7 @@ export default function Albums({ albums }: Props) {
                 className={linkStyle}
               >
                 <img
-                  src={imageBuilder(mainImage).width(256).height(200).url()}
+                  src={asThumbnail(imageBuilder(mainImage)).url()}
                 />
                 <div>{name}</div>
               </Link>

@@ -4,7 +4,8 @@ import Container from '../container';
 import { imageBuilder } from '../../lib/sanity';
 import { captionStyle, figureStyle } from './styles.css';
 import TextBlock from '../text-block';
-import { maxPageWidth } from '../styles.css';
+import { asFullSize } from '../../lib/image';
+import Link from "../link";
 
 interface Props extends ComponentProps {
   component: Sanity.Schema.ImageComponent
@@ -15,10 +16,12 @@ export default function PhotoComponent({ component }: Props) {
   const image = imageBuilder(photo.image);
   return <Container>
     <figure className={figureStyle}>
-      <img
-        src={image.maxWidth(maxPageWidth).url()}
-        alt={photo.alt}
-      />
+      <Link href={image.url()}>
+        <img
+          src={asFullSize(image).url()}
+          alt={photo.alt}
+        />
+      </Link>
       {photo.description ?
         <caption className={captionStyle}>
           <TextBlock text={photo.description} />
