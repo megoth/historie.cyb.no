@@ -23,10 +23,10 @@ interface Props {
 }
 
 export default function HistoryYearEntry({
-  events,
-  year,
-  expanded,
-}: Props) {
+                                           events,
+                                           year,
+                                           expanded,
+                                         }: Props) {
   const majorEvents = events.filter((event) => event.major && !event.semester);
   const minorEvents = events.filter((event) => !event.major && !event.semester);
   const semesterEvents = events.filter((event) => event.semester)
@@ -61,10 +61,10 @@ export default function HistoryYearEntry({
     <>
       <h3 className={yearTitleStyle}>
         {expanded ? (
-          <DateFormat date={yearAsString} format={"yyyy"} />
+          <DateFormat date={yearAsString} format={"yyyy"}/>
         ) : (
           <Link href={href} className={yearLinkStyle} onClick={selectYear}>
-            <DateFormat date={yearAsString} format={"yyyy"} />
+            <DateFormat date={yearAsString} format={"yyyy"}/>
             &nbsp;
             {isSelected ? "↓" : "→"}
           </Link>
@@ -99,7 +99,7 @@ export default function HistoryYearEntry({
             <li key={`semester-events-${year}`}>
               Grupper
               <ul className={yearListStyle}>
-                {semesterEvents.map((event, index) => (
+                {groupSemesterEventsByYear(semesterEvents).map((event, index) => (
                   <HistoryYearListItem
                     event={event}
                     key={`semester-event-${event.year}-${index}`}
@@ -112,4 +112,18 @@ export default function HistoryYearEntry({
       </div>
     </>
   );
+}
+
+function groupSemesterEventsByYear(events: Array<EventForListQuery>): Array<EventForListQuery> {
+  return events.reduce<Array<EventForListQuery>>((list, event) => {
+    const index = list.map(({ name }) => name).indexOf(event.name);
+    return index !== -1 ? [
+      ...list.slice(0, index),
+      {
+        ...event,
+        semester: null,
+      },
+      ...list.slice(index + 1),
+    ] : list.concat(event);
+  }, []);
 }

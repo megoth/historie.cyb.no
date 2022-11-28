@@ -1,5 +1,11 @@
 import { style } from "@vanilla-extract/css";
 
+export const groupNavStyle = style({
+  display: "flex",
+  gap: "0.25em",
+  flexWrap: "wrap",
+})
+
 export const listStyle = style({
   display: "grid",
   gridTemplateColumns: "1fr",

@@ -13,7 +13,7 @@ interface GroupConstellationGroupProps {
 export default function Group({ group, constellations }: GroupConstellationGroupProps) {
   return (
     <>
-      <h2>{group.name}</h2>
+      <h2 id={group.slug.current}>{group.name}</h2>
       <ul className={listStyle}>
         {getGroupConstellations(group, constellations).map((constellation) => (
           <li key={getIdForGroup(group.slug.current, constellation.year, constellation.semester)}>
