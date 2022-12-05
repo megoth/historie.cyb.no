@@ -24,7 +24,7 @@ export async function getPage(
   preview: boolean
 ): Promise<PageQuery> {
   return getClient(preview)
-    .fetch(`*[ _type == "page" && slug.current == "2009v" ]{
+    .fetch(`*[ _type == "page" && slug.current == $slug ]{
       name,
       title,
       'slug': slug.current,
