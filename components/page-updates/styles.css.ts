@@ -1,4 +1,4 @@
 import { style } from "@vanilla-extract/css";
-import { listRule } from "../text-block/styles.css";
+import { ulRule } from "../text-block/styles.css";
 
-export const listStyle = style(listRule);
+export const listStyle = style(ulRule);

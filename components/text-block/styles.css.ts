@@ -1,18 +1,27 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { vars } from "../styles.css";
 
 export const textBlockStyle = style({});
 
-export const listRule = {
-  listStyle: "disc",
-  margin: "1rem 0",
+const listRule = (margin: number = 1) => ({
+  margin: `0.5em 0`,
   "@media": {
     "screen and (min-width: 640px)": {
-      margin: "1rem",
+      margin: `0.5em ${margin}rem`,
     },
   },
+});
+
+export const olRule = {
+  listStyle: "number",
+  ...listRule(1.8),
+}
+globalStyle(`${textBlockStyle} ol`, olRule)
+
+export const ulRule = {
+  listStyle: "disc",
+  ...listRule(),
 };
-globalStyle(`${textBlockStyle} ul`, listRule);
+globalStyle(`${textBlockStyle} ul`, ulRule);
 
 globalStyle(`${textBlockStyle} blockquote`, {
   // color: vars.color.green,
