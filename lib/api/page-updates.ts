@@ -1,4 +1,5 @@
 import { getClient } from "../sanity";
+import { pageSlugs } from '../pages';
 
 export interface PageUpdateQuery extends Sanity.Document {
   created: string;
@@ -22,27 +23,7 @@ export async function getAlbumUpdates(
       albums.map((album) => ({
         ...album,
         description: `Nytt album`,
-        url: `/gallery/${album.slug}`,
-      }))
-    );
-}
-
-export async function getAwardUpdates(
-  preview: boolean
-): Promise<Array<PageUpdateQuery>> {
-  return getClient(preview)
-    .fetch(
-      `*[_type == "person"] {
-      'created': titles[]|order(date desc)[0].date,
-      name,
-      'slug': slug.current
-    } | order(created desc)[0...10]`
-    )
-    .then((awards) =>
-      awards.map((person) => ({
-        ...person,
-        description: `Ny ordenstildeling`,
-        url: `/person/${person.slug}`,
+        url: `/${pageSlugs.GALLERY}/${album.slug}`,
       }))
     );
 }
@@ -62,7 +43,7 @@ export async function getEventUpdates(
       events.map((event) => ({
         ...event,
         description: `Ny hendelse publisert`,
-        url: `/tidslinje/${event.slug}`,
+        url: `/${pageSlugs.HISTORY}/${event.slug}`,
       }))
     );
 }
@@ -70,11 +51,9 @@ export async function getEventUpdates(
 export async function getPageUpdates(preview: boolean) {
   return Promise.all([
     getAlbumUpdates(preview),
-    getAwardUpdates(preview),
     getEventUpdates(preview),
-  ]).then(([albums, awards, events]) =>
+  ]).then(([albums, events]) =>
     albums
-      .concat(awards)
       .concat(events)
       .sort((a, b) => (a.created < b.created ? 1 : -1))
       .slice(0, 10)

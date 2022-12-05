@@ -5,6 +5,7 @@ import Container from "../container";
 import { linkStyle, listStyle } from "./styles.css";
 import Link from "../link";
 import { asThumbnail } from '../../lib/images';
+import { pageSlugs } from '../../lib/pages';
 
 interface Props {
   albums: Array<AlbumQuery>;
@@ -19,7 +20,7 @@ export default function Albums({ albums }: Props) {
           .map(({ slug, mainImage, name }) => (
             <li key={slug}>
               <Link
-                href={`/gallery/${slug}`}
+                href={`/${pageSlugs.GALLERY}/${slug}`}
                 className={linkStyle}
               >
                 <img

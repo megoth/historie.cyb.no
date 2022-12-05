@@ -4,6 +4,7 @@ import Container from '../container';
 import Group from './group';
 import Link from '../link';
 import { groupNavStyle } from './styles.css';
+import { pageSlugs } from '../../lib/pages';
 
 interface Props {
   constellations: Array<GroupConstellationQuery>
@@ -17,7 +18,7 @@ export default function GroupConstellations({ constellations }: Props) {
         <div className={groupNavStyle}>
           <span>Hopp til: </span>
           {groups.slice(1).map((group) => (
-            <Link href={`/group#${group.slug.current}`}>{group.name}</Link>
+            <Link href={`/${pageSlugs.GROUP}#${group.slug.current}`}>{group.name}</Link>
           ))}
         </div>
       )}

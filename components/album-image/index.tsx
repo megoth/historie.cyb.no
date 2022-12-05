@@ -7,6 +7,7 @@ import Link from '../link';
 import { photoImgStyle, albumPhotoLinkStyle, albumPhotosStyle, albumPhotoCurrentLinkStyle, albumPhotosTitle } from './styles.css';
 import clsx from 'clsx';
 import { asFullSize, asThumbnail } from '../../lib/images';
+import { pageSlugs } from '../../lib/pages';
 
 interface AlbumImageProps {
   album: AlbumWithImagesQuery;
@@ -42,7 +43,7 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
           <ul className={albumPhotosStyle}>
             {albumPhotos.map((albumPhoto) => (
               <li key={`albumPhoto-${albumPhoto._key}`}>
-                <Link href={`/gallery/${album.slug}/${albumPhoto._key}#content`} className={clsx(albumPhotoLinkStyle, {
+                <Link href={`/${pageSlugs}/${album.slug}/${albumPhoto._key}#content`} className={clsx(albumPhotoLinkStyle, {
                   [albumPhotoCurrentLinkStyle]: albumPhoto._key === photo._key
                 })}>
                   <img
