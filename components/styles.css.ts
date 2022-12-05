@@ -5,9 +5,13 @@ export const thumbnailWidth = 256;
 export const thumbnailHeight = thumbnailWidth / 16 * 9;
 
 export const [themeClass, vars] = createTheme({
+  borderRadius: {
+    default: "4px",
+  },
   color: {
     base: "#212020",
     black: "#000000",
+    grey: "#CCCCCC",
     text: "#FFFFFF",
     white: "#FFFFFF",
   },

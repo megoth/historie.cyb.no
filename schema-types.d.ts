@@ -151,6 +151,7 @@ Nødvendig
         | Sanity.Keyed<ButtonComponent>
         | Sanity.Keyed<ButtonsComponent>
         | Sanity.Keyed<DataComponent>
+        | Sanity.Keyed<FileComponent>
         | Sanity.Keyed<ImageComponent>
         | Sanity.Keyed<SubpagesComponent>
       >;
@@ -348,6 +349,22 @@ Nødvendig
 Data må lenkes opp mot siden via kode
        */
       type?: "albums" | "events" | "pageUpdates" | "subpages";
+    };
+
+    type FileComponent = {
+      _type: "file-component";
+
+      /**
+       * Filnavn - `String`
+       */
+      name?: string;
+
+      /**
+       * Fil - `File`
+       */
+      file?: {
+        asset: Sanity.Asset;
+      };
     };
 
     type ImageComponent = {

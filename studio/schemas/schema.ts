@@ -26,6 +26,7 @@ import group from "./group"
 import groupConstellation from "./groupConstellation"
 import membership from "./membership"
 import person from "./person"
+import fileComponent from "./fileComponent";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -46,6 +47,7 @@ export default createSchema({
     buttonComponent,
     buttonsComponent,
     dataComponent,
+    fileComponent,
     imageComponent,
     subpagesComponent,
     textComponent,

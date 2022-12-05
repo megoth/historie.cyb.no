@@ -1,5 +1,5 @@
 import React from "react";
-import { PageQuery } from "../../lib/api/pages";
+import { FileComponentQuery, PageQuery } from "../../lib/api/pages";
 import TextComponent from "../text-component";
 import ButtonComponent from "../button-component";
 import ButtonsComponent from "../buttons-component";
@@ -9,6 +9,7 @@ import Container from "../container";
 import { ComponentTypes } from '../../studio/schemas/page';
 import SubpagesComponent from '../subpages';
 import PhotoComponent from '../photo-component';
+import FileComponent from '../file-component';
 
 interface Props extends DataModules {
   page?: Partial<PageQuery>;
@@ -51,6 +52,13 @@ export default function PageComponents({ page, ...data }: Props) {
                 componentIndex={index}
                 key={key}
                 page={page}/>
+            );
+          case ComponentTypes.FILE:
+            return (
+              <FileComponent
+                component={component as unknown as FileComponentQuery}
+                componentIndex={index}
+                key={key}/>
             );
           case ComponentTypes.IMAGE:
             return (

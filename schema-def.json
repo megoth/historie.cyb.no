@@ -704,6 +704,19 @@
                 "title": null,
                 "hasValidation": false,
                 "type": "RegistryReference",
+                "to": "file-component"
+              },
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "type": "RegistryReference",
                 "to": "image-component"
               },
               {
@@ -1561,6 +1574,68 @@
                 "value": "subpages"
               }
             ]
+          }
+        }
+      ]
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
+      "name": "file-component",
+      "readOnly": false,
+      "title": "Fil",
+      "hasValidation": false,
+      "type": "Object",
+      "fields": [
+        {
+          "name": "name",
+          "title": "Filnavn",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "name",
+            "readOnly": false,
+            "title": "Filnavn",
+            "hasValidation": false,
+            "type": "String",
+            "list": null
+          }
+        },
+        {
+          "name": "file",
+          "title": "Fil",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "file",
+            "readOnly": false,
+            "title": "Fil",
+            "hasValidation": false,
+            "type": "File",
+            "fields": null
           }
         }
       ]
