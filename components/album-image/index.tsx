@@ -43,7 +43,7 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
           <ul className={albumPhotosStyle}>
             {albumPhotos.map((albumPhoto) => (
               <li key={`albumPhoto-${albumPhoto._key}`}>
-                <Link href={`/${pageSlugs}/${album.slug}/${albumPhoto._key}#content`} className={clsx(albumPhotoLinkStyle, {
+                <Link href={`/${pageSlugs.GALLERY}/${album.slug}/${albumPhoto._key}#content`} className={clsx(albumPhotoLinkStyle, {
                   [albumPhotoCurrentLinkStyle]: albumPhoto._key === photo._key
                 })}>
                   <img
