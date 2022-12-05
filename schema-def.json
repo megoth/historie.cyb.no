@@ -2119,6 +2119,29 @@
             "type": "Number",
             "list": null
           }
+        },
+        {
+          "name": "date",
+          "title": "Rekkefølge dato",
+          "description": "Alternativt kan du bruke dato for rekkefølge",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Alternativt kan du bruke dato for rekkefølge",
+            "hidden": false,
+            "name": "date",
+            "readOnly": false,
+            "title": "Rekkefølge dato",
+            "hasValidation": false,
+            "type": "Date"
+          }
         }
       ]
     },

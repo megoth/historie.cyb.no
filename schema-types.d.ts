@@ -467,6 +467,12 @@ Nødvendig
 Hvilken rekkefølge skal siden ha? (0 og oppover)
        */
       orderNo?: number;
+
+      /**
+       * Rekkefølge dato - `Date`
+Alternativt kan du bruke dato for rekkefølge
+       */
+      date?: string;
     };
 
     type Membership = {

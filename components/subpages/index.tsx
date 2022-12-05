@@ -14,11 +14,17 @@ export default function Subpages({ page, subpages }: Props) {
   if (subpages.length === 0) return null;
   return (
     <ul className={subpagesListStyle}>
-      {subpages.sort((a, b) => a.order - b.order).map(({ slug, title }) => <li>
-        <Link href={`/${page.slug}/${slug}`}>
-          {title}
-        </Link>
-      </li>)}
+      {sortSubpages(subpages).map(({ slug, title }) => (
+        <li key={slug}>
+          <Link href={`/${page.slug}/${slug}`}>
+            {title}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
+}
+
+function sortSubpages(subpages: Array<SubpageQuery>): Array<SubpageQuery> {
+  return subpages.sort((a, b) => (a.order || new Date(b.date).getTime()) - (b.order || new Date(a.date).getTime()));
 }

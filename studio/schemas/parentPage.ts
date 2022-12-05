@@ -16,6 +16,12 @@ export default {
       description: "Hvilken rekkefølge skal siden ha? (0 og oppover)",
       type: "number",
     },
+    {
+      name: "date",
+      title: "Rekkefølge dato",
+      description: "Alternativt kan du bruke dato for rekkefølge",
+      type: "date",
+    },
   ],
   preview: {
     select: {

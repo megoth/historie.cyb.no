@@ -8,6 +8,7 @@ export interface PageQuery extends Omit<Sanity.Schema.Page, "slug"> {
 export interface SubpageQuery {
   title: string;
   order: number;
+  date: string;
   slug: string;
 }
 
@@ -54,6 +55,7 @@ export async function getSubpages(
       title,
       'slug': slug.current,
       'order': parent.orderNo,
+      'date': parent.date,
     }`,
       { slug }
     );
