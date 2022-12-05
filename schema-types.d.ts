@@ -144,6 +144,12 @@ Nødvendig
       description?: string;
 
       /**
+       * Presentasjon som hendelse - `RegistryReference`
+Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her
+       */
+      event?: PageEvent;
+
+      /**
        * Innhold - `Array`
        */
       components?: Array<
@@ -311,6 +317,27 @@ Nødvendig
           hotspot?: Sanity.ImageHotspot;
         }>
     >;
+
+    type PageEvent = {
+      _type: "pageEvent";
+
+      /**
+       * Navn - `String`
+Teksten som vil vises i tidslinjen
+       */
+      name?: string;
+
+      /**
+       * Dato - `Date`
+Nødvendig om teksten skal vises i tidslinjen.
+       */
+      date?: string;
+
+      /**
+       * Stor hendelse - `Boolean`
+       */
+      major?: boolean;
+    };
 
     type ButtonComponent = {
       _type: "button-component";

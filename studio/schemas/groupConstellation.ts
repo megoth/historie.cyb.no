@@ -1,5 +1,10 @@
 import { RiTeamLine } from "react-icons/ri";
 
+export const semesters = {
+  SPRING: "vår",
+  AUTUMN: "høst",
+} as const;
+
 export default {
   name: "groupConstellation",
   title: "Gruppesammensetning",
@@ -29,7 +34,7 @@ export default {
       type: "string",
       layout: "radio",
       options: {
-        list: ["vår", "høst"],
+        list: Object.values(semesters),
       },
     },
     {

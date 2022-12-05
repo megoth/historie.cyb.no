@@ -620,6 +620,30 @@
           }
         },
         {
+          "name": "event",
+          "title": "Presentasjon som hendelse",
+          "description": "Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her",
+            "hidden": false,
+            "name": "event",
+            "readOnly": false,
+            "title": "Presentasjon som hendelse",
+            "hasValidation": false,
+            "type": "RegistryReference",
+            "to": "pageEvent"
+          }
+        },
+        {
           "name": "components",
           "title": "Innhold",
           "description": "",
@@ -1378,6 +1402,90 @@
         }
       ],
       "list": null
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
+      "name": "pageEvent",
+      "readOnly": false,
+      "title": "Hendelse",
+      "hasValidation": false,
+      "type": "Object",
+      "fields": [
+        {
+          "name": "name",
+          "title": "Navn",
+          "description": "Teksten som vil vises i tidslinjen",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Teksten som vil vises i tidslinjen",
+            "hidden": false,
+            "name": "name",
+            "readOnly": false,
+            "title": "Navn",
+            "hasValidation": false,
+            "type": "String",
+            "list": null
+          }
+        },
+        {
+          "name": "date",
+          "title": "Dato",
+          "description": "Nødvendig om teksten skal vises i tidslinjen.",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Nødvendig om teksten skal vises i tidslinjen.",
+            "hidden": false,
+            "name": "date",
+            "readOnly": false,
+            "title": "Dato",
+            "hasValidation": false,
+            "type": "Date"
+          }
+        },
+        {
+          "name": "major",
+          "title": "Stor hendelse",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "major",
+            "readOnly": false,
+            "title": "Stor hendelse",
+            "hasValidation": false,
+            "type": "Boolean"
+          }
+        }
+      ]
     },
     {
       "codegen": {

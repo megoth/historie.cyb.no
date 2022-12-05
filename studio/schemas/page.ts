@@ -48,6 +48,12 @@ export default {
       type: "text",
     },
     {
+      name: "event",
+      title: "Presentasjon som hendelse",
+      description: "Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her",
+      type: "pageEvent",
+    },
+    {
       name: "components",
       title: "Innhold",
       type: "array",

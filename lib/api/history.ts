@@ -1,5 +1,6 @@
 import client, { getClient } from "../sanity";
 import { getUrlForGroup } from '../urls';
+import { semesters } from '../../studio/schemas/groupConstellation';
 
 export interface EventQuery
   extends Omit<Sanity.Schema.Event, "slug" | "sources" | "associations"> {
@@ -16,7 +17,7 @@ export interface EventForListQuery
 export async function getAllEventsForHistoryPage(
   preview: boolean
 ): Promise<Array<EventForListQuery>> {
-  const [events, groups] = await Promise.all([
+  const [events, groups, pages] = await Promise.all([
     getClient(preview)
       .fetch(`*[ _type == "event" ] | order(year asc, date asc){
     name,
@@ -33,7 +34,15 @@ export async function getAllEventsForHistoryPage(
     year,
     semester,
     'leader':members[0].person->name,
-  }`)
+  }`),
+    getClient(preview)
+      .fetch(`*[ _type == "page" && event.date != null ]{
+      'name': event.name,
+      'slug': slug.current,
+      'parentSlug': parent.page->slug.current,
+      'date': event.date,
+      'major': event.major
+    }`)
   ]);
   return [
     ...events.map(({ slug, ...data }) => ({ ...data, href: `/history/${slug}` })),
@@ -42,8 +51,23 @@ export async function getAllEventsForHistoryPage(
       year,
       semester,
       href: getUrlForGroup(group.slug.current, year, semester)
+    })),
+    ...pages.map(({ name, slug, parentSlug, date, major }) => ({
+      name,
+      year: date.substring(0, 4),
+      date,
+      major,
+      href: parentSlug ? `/${parentSlug}/${slug}` : slug,
     }))
-  ];
+  ].sort((a, b) => getTime(a) - getTime(b));
+
+  function getTime(event: EventForListQuery): number {
+    return (event.date ? new Date(event.date) : (event.semester ? getDateForSemester(event) : new Date(event.year))).getTime();
+
+    function getDateForSemester(event: EventForListQuery): Date {
+      return new Date(parseInt(event.year, 10), event.semester === semesters.SPRING ? 5 : 11);
+    }
+  }
 }
 
 export async function getAllEventsWithSlug(): Promise<Array<{ slug: string }>> {

@@ -27,6 +27,7 @@ import groupConstellation from "./groupConstellation"
 import membership from "./membership"
 import person from "./person"
 import fileComponent from "./fileComponent";
+import pageEvent from "./pageEvent";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -44,6 +45,7 @@ export default createSchema({
     source,
     siteSettings,
     page,
+    pageEvent,
     buttonComponent,
     buttonsComponent,
     dataComponent,
