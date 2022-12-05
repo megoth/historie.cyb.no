@@ -10,6 +10,7 @@ export const containerStyle = style({
   display: "flex",
   alignItems: "center",
   gap: "0.5em",
+  margin: "0.5em 0",
   padding: "0.5em 0.75em",
   textDecoration: "none",
   ":focus": highlightRule,
