@@ -12,6 +12,7 @@ export const [themeClass, vars] = createTheme({
     base: "#212020",
     black: "#000000",
     grey: "#CCCCCC",
+    greyBackground: "#333333",
     text: "#FFFFFF",
     white: "#FFFFFF",
   },
