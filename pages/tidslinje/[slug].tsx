@@ -12,6 +12,7 @@ import {
   getEvent,
 } from "../../lib/api/history";
 import { getPage, PageQuery } from '../../lib/api/pages';
+import { pageSlugs, pageTitles } from '../../lib/pages';
 
 interface Props extends SiteSettingsPage {
   event: EventQuery;
@@ -24,7 +25,7 @@ export default function EventPage({ event, historyPage, siteSettings }: Props) {
     return <ErrorPage statusCode={404} />;
   }
   const crumbs = [
-    { href: "/tidslinje", text: historyPage?.title || "Tidslinje" }
+    { href: `/${pageSlugs.HISTORY}`, text: historyPage?.title || pageTitles.HISTORY }
   ]
   return (
     <Layout pageTitle={event.name} siteSettings={siteSettings} crumbs={crumbs}>
@@ -40,7 +41,7 @@ export const getStaticProps: GetStaticProps = async ({
   const [event, siteSettings, historyPage] = await Promise.all([
     getEvent(params!.slug, preview),
     getSiteSettings(preview),
-    getPage("tidslinje", preview),
+    getPage(pageSlugs.HISTORY, preview),
   ]);
   return {
     props: {

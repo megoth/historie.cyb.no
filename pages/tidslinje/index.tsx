@@ -7,6 +7,7 @@ import {
 import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
 import Events from '../../components/events';
+import { pageSlugs } from '../../lib/pages';
 
 interface Props extends SiteSettingsPage {
   allEvents?: Array<EventForListQuery>;
@@ -29,7 +30,7 @@ export async function getStaticProps({ preview = false }) {
   const [allEvents, siteSettings, page] = await Promise.all([
     getAllEventsForHistoryPage(preview),
     getSiteSettings(preview),
-    getPage("tidslinje", preview),
+    getPage(pageSlugs.HISTORY, preview),
   ]);
   return {
     props: { allEvents, siteSettings, page },

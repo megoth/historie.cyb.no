@@ -3,29 +3,27 @@ import Layout from "../../components/layout";
 import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
 import PageComponents from "../../components/page-components";
-import { getPageUpdates, PageUpdateQuery } from "../../lib/api/page-updates";
+import { pageSlugs } from '../../lib/pages';
 
 interface Props extends SiteSettingsPage {
   page?: PageQuery;
-  pageUpdates?: Array<PageUpdateQuery>;
 }
 
-export default function Page({ pageUpdates, siteSettings, page }: Props) {
+export default function AboutPage({ siteSettings, page }: Props) {
   return (
     <Layout pageTitle={page?.title} siteSettings={siteSettings}>
-      <PageComponents page={page} pageUpdates={pageUpdates} />
+      <PageComponents page={page} />
     </Layout>
   );
 }
 
 export async function getStaticProps({ preview = false }) {
-  const [pageUpdates, siteSettings, page] = await Promise.all([
-    getPageUpdates(preview),
+  const [siteSettings, page] = await Promise.all([
     getSiteSettings(preview),
-    getPage("page", preview),
+    getPage(pageSlugs.ABOUT, preview),
   ]);
   return {
-    props: { pageUpdates, siteSettings, page },
+    props: { siteSettings, page },
     revalidate: 1,
   };
 }

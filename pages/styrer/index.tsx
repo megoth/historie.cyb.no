@@ -4,6 +4,7 @@ import { getSiteSettings, SiteSettingsPage } from "../../lib/api/site-settings";
 import { getPage, PageQuery } from "../../lib/api/pages";
 import GroupConstellations from '../../components/group-constellations';
 import { getAllGroupConstellations, GroupConstellationQuery } from '../../lib/api/group-constellations';
+import { pageSlugs } from '../../lib/pages';
 
 interface Props extends SiteSettingsPage {
   page?: PageQuery;
@@ -21,7 +22,7 @@ export default function Page({ siteSettings, page, constellations }: Props) {
 export async function getStaticProps({ preview = false }) {
   const [siteSettings, page, constellations] = await Promise.all([
     getSiteSettings(preview),
-    getPage("styrer", preview),
+    getPage(pageSlugs.GROUP, preview),
     getAllGroupConstellations(preview),
   ]);
   return {

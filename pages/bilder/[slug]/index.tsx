@@ -5,33 +5,31 @@ import Layout from "../../../components/layout";
 import { GetStaticProps } from "next";
 import { getSiteSettings, SiteSettingsPage } from "../../../lib/api/site-settings";
 import {
-  AlbumImageQuery,
   AlbumWithImagesQuery,
   getAlbumWithImages,
-  getAllAlbumsWithSlugAndImages,
+  getAllAlbumsWithSlug,
 } from "../../../lib/api/gallery";
 import Loading from "../../../components/loading";
-import AlbumImage from '../../../components/album-image';
+import Album from "../../../components/album";
 import { getPage, PageQuery } from '../../../lib/api/pages';
+import { pageSlugs, pageTitles } from '../../../lib/pages';
 
 interface Props extends SiteSettingsPage {
   gallery: PageQuery;
   album: AlbumWithImagesQuery;
-  photo: AlbumImageQuery;
 }
 
-export default function AlbumImagePage({ gallery, album, photo, siteSettings }: Props) {
+export default function AlbumPage({ gallery, album, siteSettings }: Props) {
   const router = useRouter();
-  if ((!router.isFallback && !album?.slug) || !album || !photo) {
-    return <ErrorPage statusCode={404} />;
+  if ((!router.isFallback && !album?.slug) || !album) {
+    return <ErrorPage statusCode={404}/>;
   }
   const crumbs = [
-    { href: "/bilder", text: gallery?.title || "Bilder" },
-    { href: `/bilder/${album.slug}`, text: album.name }
+    { href: `/${pageSlugs.GALLERY}`, text: gallery?.title || pageTitles.GALLERY }
   ]
   return (
-    <Layout siteSettings={siteSettings} crumbs={crumbs}>
-      {router.isFallback ? <Loading /> : <AlbumImage album={album} photo={photo} />}
+    <Layout pageTitle={album.name} siteSettings={siteSettings} crumbs={crumbs}>
+      {router.isFallback ? <Loading/> : <Album album={album}/>}
     </Layout>
   );
 }
@@ -43,15 +41,13 @@ export const getStaticProps: GetStaticProps = async ({
   const [album, siteSettings, gallery] = await Promise.all([
     getAlbumWithImages(params!.slug, preview),
     getSiteSettings(preview),
-    getPage("bilder", preview),
+    getPage(pageSlugs.GALLERY, preview),
   ]);
-  const photo = album.images.find((image) => image._key === params!.slug2);
   return {
     props: {
       preview,
       gallery,
       album,
-      photo,
       siteSettings,
     },
     revalidate: 1,
@@ -59,14 +55,12 @@ export const getStaticProps: GetStaticProps = async ({
 };
 
 export async function getStaticPaths() {
-  const albums = await getAllAlbumsWithSlugAndImages();
-  const images = albums.flatMap(({ slug, images }) => images.map(({ _key }) => ({ slug, slug2: _key })))
+  const albums = await getAllAlbumsWithSlug();
   return {
     paths:
-      images?.map(({ slug, slug2 }) => ({
+      albums?.map((album) => ({
         params: {
-          slug,
-          slug2
+          slug: album.slug,
         },
       })) || [],
     fallback: false,
