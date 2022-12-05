@@ -26,8 +26,8 @@ export default function AlbumImagePage({ gallery, album, photo, siteSettings }: 
     return <ErrorPage statusCode={404} />;
   }
   const crumbs = [
-    { href: "/gallery", text: gallery?.title || "Galleri" },
-    { href: `/gallery/${album.slug}`, text: album.name }
+    { href: "/bilder", text: gallery?.title || "Bilder" },
+    { href: `/bilder/${album.slug}`, text: album.name }
   ]
   return (
     <Layout siteSettings={siteSettings} crumbs={crumbs}>
@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps = async ({
   const [album, siteSettings, gallery] = await Promise.all([
     getAlbumWithImages(params!.slug, preview),
     getSiteSettings(preview),
-    getPage("gallery", preview),
+    getPage("bilder", preview),
   ]);
   const photo = album.images.find((image) => image._key === params!.slug2);
   return {

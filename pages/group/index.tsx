@@ -21,7 +21,7 @@ export default function Page({ siteSettings, page, constellations }: Props) {
 export async function getStaticProps({ preview = false }) {
   const [siteSettings, page, constellations] = await Promise.all([
     getSiteSettings(preview),
-    getPage("group", preview),
+    getPage("styrer", preview),
     getAllGroupConstellations(preview),
   ]);
   return {

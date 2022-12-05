@@ -24,7 +24,7 @@ export default function EventPage({ event, historyPage, siteSettings }: Props) {
     return <ErrorPage statusCode={404} />;
   }
   const crumbs = [
-    { href: "/history", text: historyPage?.title || "Historie" }
+    { href: "/tidslinje", text: historyPage?.title || "Tidslinje" }
   ]
   return (
     <Layout pageTitle={event.name} siteSettings={siteSettings} crumbs={crumbs}>
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({
   const [event, siteSettings, historyPage] = await Promise.all([
     getEvent(params!.slug, preview),
     getSiteSettings(preview),
-    getPage("history", preview),
+    getPage("tidslinje", preview),
   ]);
   return {
     props: {

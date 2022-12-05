@@ -62,7 +62,7 @@ export async function getEventUpdates(
       events.map((event) => ({
         ...event,
         description: `Ny hendelse publisert`,
-        url: `/history/${event.slug}`,
+        url: `/tidslinje/${event.slug}`,
       }))
     );
 }

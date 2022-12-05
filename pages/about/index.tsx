@@ -19,7 +19,7 @@ export default function AboutPage({ siteSettings, page }: Props) {
 export async function getStaticProps({ preview = false }) {
   const [siteSettings, page] = await Promise.all([
     getSiteSettings(preview),
-    getPage("about", preview),
+    getPage("om-siden", preview),
   ]);
   return {
     props: { siteSettings, page },

@@ -24,7 +24,7 @@ export default function AlbumPage({ gallery, album, siteSettings }: Props) {
     return <ErrorPage statusCode={404}/>;
   }
   const crumbs = [
-    { href: "/gallery", text: gallery?.title || "Galleri" }
+    { href: "/bilder", text: gallery?.title || "Bilder" }
   ]
   return (
     <Layout pageTitle={album.name} siteSettings={siteSettings} crumbs={crumbs}>
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({
   const [album, siteSettings, gallery] = await Promise.all([
     getAlbumWithImages(params!.slug, preview),
     getSiteSettings(preview),
-    getPage("gallery", preview),
+    getPage("bilder", preview),
   ]);
   return {
     props: {

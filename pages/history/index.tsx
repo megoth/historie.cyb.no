@@ -29,7 +29,7 @@ export async function getStaticProps({ preview = false }) {
   const [allEvents, siteSettings, page] = await Promise.all([
     getAllEventsForHistoryPage(preview),
     getSiteSettings(preview),
-    getPage("history", preview),
+    getPage("tidslinje", preview),
   ]);
   return {
     props: { allEvents, siteSettings, page },
