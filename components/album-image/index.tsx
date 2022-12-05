@@ -4,10 +4,20 @@ import Container from "../container";
 import { imageBuilder } from "../../lib/sanity";
 import TextBlock from '../text-block';
 import Link from '../link';
-import { photoImgStyle, albumPhotoLinkStyle, albumPhotosStyle, albumPhotoCurrentLinkStyle, albumPhotosTitle } from './styles.css';
+import {
+  photoImgStyle,
+  albumPhotoLinkStyle,
+  albumPhotosStyle,
+  albumPhotoCurrentLinkStyle,
+  albumPhotosTitle,
+  downloadButtonStyle,
+  downloadButtonInnerStyle,
+  descriptionBlockStyle
+} from './styles.css';
 import clsx from 'clsx';
 import { asFullSize, asThumbnail } from '../../lib/images';
 import { pageSlugs } from '../../lib/pages';
+import { BsDownload } from 'react-icons/bs';
 
 interface AlbumImageProps {
   album: AlbumWithImagesQuery;
@@ -19,10 +29,11 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
   const photoIndex = album.images.map((image) => image._key).indexOf(photo._key);
   const photoIsLast = photoIndex === album.images.length - 1;
   const albumPhotoLineStart = Math.max(photoIndex - (photoIsLast ? 2 : 1), 0);
-  const albumPhotos = album.images.slice(albumPhotoLineStart, albumPhotoLineStart + 3);
+  const photos = album.images.slice(albumPhotoLineStart, albumPhotoLineStart + 3);
+  const nextImageUrl = getPhotoUrl(album, photos[2] || photos[1] || photos[0]);
   return (
     <Container>
-      <Link href={image.url()}>
+      <Link href={nextImageUrl}>
         <img
           id={"image"}
           src={asFullSize(image).url()}
@@ -35,15 +46,21 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
           <TextBlock text={photo.description}/>
         </div>
       ) : (
-        <div aria-hidden={true}>{photo.alt}</div>
+        <div aria-hidden={true} className={descriptionBlockStyle}>{photo.alt}</div>
       )}
-      {albumPhotos.length > 1 && (
+      <Link href={image.url()} className={downloadButtonStyle}>
+        <span className={downloadButtonInnerStyle}>
+          <span>Last ned originalstørrelse</span>
+          <BsDownload />
+        </span>
+      </Link>
+      {photos.length > 1 && (
         <>
           <h2 className={albumPhotosTitle}>Bilder i album</h2>
           <ul className={albumPhotosStyle}>
-            {albumPhotos.map((albumPhoto) => (
+            {photos.map((albumPhoto) => (
               <li key={`albumPhoto-${albumPhoto._key}`}>
-                <Link href={`/${pageSlugs.GALLERY}/${album.slug}/${albumPhoto._key}#content`} className={clsx(albumPhotoLinkStyle, {
+                <Link href={getPhotoUrl(album, albumPhoto)} className={clsx(albumPhotoLinkStyle, {
                   [albumPhotoCurrentLinkStyle]: albumPhoto._key === photo._key
                 })}>
                   <img
@@ -58,4 +75,8 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
       )}
     </Container>
   );
+}
+
+function getPhotoUrl(album: AlbumWithImagesQuery, photo: AlbumImageQuery): string {
+  return `/${pageSlugs.GALLERY}/${album.slug}/${photo._key}#content`
 }
