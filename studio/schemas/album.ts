@@ -25,6 +25,7 @@ export default {
     {
       name: "date",
       title: "Dato",
+      description: "Nødvendig (for sortering)",
       type: "date",
     },
     {
