@@ -17,3 +17,7 @@ export const listStyle = style({
 export const linkStyle = style({
   textDecoration: "none",
 });
+
+export const imageStyle = style({
+  width: "100%",
+});

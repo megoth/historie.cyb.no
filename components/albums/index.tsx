@@ -2,7 +2,7 @@ import React from "react";
 import { AlbumQuery } from "../../lib/api/gallery";
 import { imageBuilder } from "../../lib/sanity";
 import Container from "../container";
-import { linkStyle, listStyle } from "./styles.css";
+import { imageStyle, linkStyle, listStyle } from "./styles.css";
 import Link from "../link";
 import { asThumbnail } from '../../lib/images';
 import { pageSlugs } from '../../lib/pages';
@@ -23,9 +23,7 @@ export default function Albums({ albums }: Props) {
                 href={`/${pageSlugs.GALLERY}/${slug}`}
                 className={linkStyle}
               >
-                <img
-                  src={asThumbnail(imageBuilder(mainImage)).url()}
-                />
+                <img className={imageStyle} src={asThumbnail(imageBuilder(mainImage), 575).url()} />
                 <div>{name}</div>
               </Link>
             </li>
