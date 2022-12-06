@@ -13,3 +13,7 @@ export const listStyle = style({
     },
   },
 });
+
+export const imageStyle = style({
+  width: "100%",
+});
