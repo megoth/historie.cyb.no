@@ -6,16 +6,13 @@ export default {
   type: "object",
   fields: [
     {
-      name: "variant",
-      title: "Type liste",
-      type: "string",
-      options: {
-        list: ["default"],
-      },
+      name: "sortReverse",
+      title: "Sorter motsatt",
+      type: "boolean",
     },
   ],
   initialValue: {
-    variant: "default",
+    sortReverse: false,
   },
   preview: {
     prepare() {

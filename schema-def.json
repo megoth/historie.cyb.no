@@ -1799,8 +1799,8 @@
       "type": "Object",
       "fields": [
         {
-          "name": "variant",
-          "title": "Type liste",
+          "name": "sortReverse",
+          "title": "Sorter motsatt",
           "description": "",
           "hidden": false,
           "readOnly": false,
@@ -1814,17 +1814,11 @@
             },
             "description": null,
             "hidden": false,
-            "name": "variant",
+            "name": "sortReverse",
             "readOnly": false,
-            "title": "Type liste",
+            "title": "Sorter motsatt",
             "hasValidation": false,
-            "type": "String",
-            "list": [
-              {
-                "title": "Default",
-                "value": "default"
-              }
-            ]
+            "type": "Boolean"
           }
         }
       ]

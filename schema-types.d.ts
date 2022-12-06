@@ -407,9 +407,9 @@ Data må lenkes opp mot siden via kode
       _type: "subpages-component";
 
       /**
-       * Type liste - `String`
+       * Sorter motsatt - `Boolean`
        */
-      variant?: "default";
+      sortReverse?: boolean;
     };
 
     type TextComponent = {

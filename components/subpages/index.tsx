@@ -10,11 +10,11 @@ interface Props extends ComponentProps {
   page: Partial<PageQuery>;
 }
 
-export default function Subpages({ page, subpages }: Props) {
+export default function Subpages({ component, page, subpages }: Props) {
   if (subpages.length === 0) return null;
   return (
     <ul className={subpagesListStyle}>
-      {sortSubpages(subpages).map(({ slug, title }) => (
+      {sortSubpages(subpages, component.sortReverse).map(({ slug, title }) => (
         <li key={slug}>
           <Link href={`/${page.slug}/${slug}`}>
             {title}
@@ -25,6 +25,7 @@ export default function Subpages({ page, subpages }: Props) {
   );
 }
 
-function sortSubpages(subpages: Array<SubpageQuery>): Array<SubpageQuery> {
-  return subpages.sort((a, b) => (a.order || new Date(b.date).getTime()) - (b.order || new Date(a.date).getTime()));
+function sortSubpages(subpages: Array<SubpageQuery>, sortReverse: boolean): Array<SubpageQuery> {
+  const list = subpages.sort((a, b) => (a.order || new Date(b.date).getTime()) - (b.order || new Date(a.date).getTime()));
+  return sortReverse ? list.reverse() : list;
 }

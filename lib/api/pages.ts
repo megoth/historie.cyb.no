@@ -24,6 +24,10 @@ export async function getPage(
   slug: string | string[] | undefined,
   preview: boolean
 ): Promise<PageQuery> {
+  /**
+   * TODO: Find a way to not having to list all possible properties we want to get for page components
+   * For now we have to update this every time we change properties we want to use for page components
+   */
   return getClient(preview)
     .fetch(`*[ _type == "page" && slug.current == $slug ]{
       name,
@@ -34,10 +38,10 @@ export async function getPage(
         _type,
         name,
         photo,
+        sortReverse,
         text,
         type,
         'file': file.asset->,
-        variant,
       },
     }`,
       { slug }
