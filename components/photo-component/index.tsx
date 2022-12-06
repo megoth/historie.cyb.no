@@ -2,10 +2,11 @@ import React from "react";
 import { ComponentProps } from "../page-components";
 import Container from '../container';
 import { imageBuilder } from '../../lib/sanity';
-import { captionStyle, figureStyle } from './styles.css';
+import { captionAltStyle, captionStyle, figureStyle } from './styles.css';
 import TextBlock from '../text-block';
 import { asFullSize } from '../../lib/images';
 import Link from "../link";
+import DownloadButton from '../download-button';
 
 interface Props extends ComponentProps {
   component: Sanity.Schema.ImageComponent
@@ -16,17 +17,21 @@ export default function PhotoComponent({ component }: Props) {
   const image = imageBuilder(photo.image);
   return <Container>
     <figure className={figureStyle}>
-      <Link href={image.url()}>
-        <img
-          src={asFullSize(image).url()}
-          alt={photo.alt}
-        />
-      </Link>
+      <img
+        src={asFullSize(image).url()}
+        alt={photo.alt}
+      />
       {photo.description ?
         <caption className={captionStyle}>
           <TextBlock text={photo.description} />
+          <div>
+            <DownloadButton href={image.url()} />
+          </div>
         </caption> :
-        <caption className={captionStyle} aria-hidden={true}>{photo.alt}</caption>
+        <caption className={captionStyle} aria-hidden={true}>
+          <span className={captionAltStyle}>{photo.alt}</span>
+          <DownloadButton href={image.url()} postFix={"bilde"} />
+        </caption>
       }
     </figure>
   </Container>;

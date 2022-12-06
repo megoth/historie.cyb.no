@@ -11,7 +11,7 @@ export const [themeClass, vars] = createTheme({
   color: {
     base: "#212020",
     black: "#000000",
-    grey: "#CCCCCC",
+    grey: "#666666",
     greyBackground: "#333333",
     text: "#FFFFFF",
     white: "#FFFFFF",

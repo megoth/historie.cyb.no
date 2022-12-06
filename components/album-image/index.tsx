@@ -10,14 +10,12 @@ import {
   albumPhotosStyle,
   albumPhotoCurrentLinkStyle,
   albumPhotosTitle,
-  downloadButtonStyle,
-  downloadButtonInnerStyle,
   descriptionBlockStyle
 } from './styles.css';
 import clsx from 'clsx';
 import { asFullSize, asThumbnail } from '../../lib/images';
 import { pageSlugs } from '../../lib/pages';
-import { BsDownload } from 'react-icons/bs';
+import DownloadButton from '../download-button';
 
 interface AlbumImageProps {
   album: AlbumWithImagesQuery;
@@ -48,12 +46,7 @@ export default function AlbumImage({ album, photo }: AlbumImageProps) {
       ) : (
         <div aria-hidden={true} className={descriptionBlockStyle}>{photo.alt}</div>
       )}
-      <Link href={image.url()} className={downloadButtonStyle}>
-        <span className={downloadButtonInnerStyle}>
-          <span>Last ned originalstørrelse</span>
-          <BsDownload />
-        </span>
-      </Link>
+      <DownloadButton href={image.url()} postFix={"originalstørrelse"} />
       {photos.length > 1 && (
         <>
           <h2 className={albumPhotosTitle}>Bilder i album</h2>
