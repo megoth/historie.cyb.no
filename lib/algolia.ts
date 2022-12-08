@@ -3,16 +3,19 @@ import { SanityDocumentStub } from '@sanity/client'
 import indexer from 'sanity-algolia'
 import { SearchClient } from 'algoliasearch/dist/algoliasearch';
 
+const constants = {
+  applicationId: process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID,
+  index: process.env.NEXT_PUBLIC_ALGOLIA_INDEX,
+  apiKey: process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY,
+}
+
 export function getClient() {
-  return algoliasearch(
-    process.env.ALGOLIA_APPLICATION_ID,
-    process.env.ALGOLIA_ADMIN_API_KEY
-  )
+  return algoliasearch(constants.applicationId, constants.apiKey);
 }
 
 export function getIndex(algolia: SearchClient) {
   // Configure this to match an existing Algolia index name
-  const algoliaIndex = algolia.initIndex(process.env.ALGOLIA_INDEX)
+  const algoliaIndex = algolia.initIndex(constants.index)
 
   return indexer(
     // The first parameter maps a Sanity document type to its respective Algolia
