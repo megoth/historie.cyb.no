@@ -6,7 +6,7 @@ import { SearchClient } from 'algoliasearch/dist/algoliasearch';
 const constants = {
   applicationId: process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID,
   index: process.env.NEXT_PUBLIC_ALGOLIA_INDEX,
-  apiKey: process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY,
+  apiKey: process.env.ALGOLIA_ADMIN_API_KEY,
 }
 
 export function getClient() {

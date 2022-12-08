@@ -3,7 +3,16 @@ import { NowRequest, NowResponse } from '@vercel/node'
 import { getClient, getIndex } from '../../../lib/algolia';
 
 const handler = (req: NowRequest, res: NowResponse) => {
-  const algolia = getClient()
+  const algolia = getClient();
+
+  // Tip: Its good practice to include a shared secret in your webhook URLs and
+  // validate it before proceeding with webhook handling. Omitted in this short
+  // example.
+  if (req.headers['content-type'] !== 'application/json') {
+    res.status(400)
+    res.json({ message: 'Bad request' })
+    return
+  }
 
   // Fetch the _id of all the documents we want to index
   const types = ["page"];
