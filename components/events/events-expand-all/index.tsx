@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Link from "../../link";
-import { getHref } from "../../../lib/utils";
 import { useRouter } from "next/router";
 import useHistory from "../../../hooks/useHistory";
 import EventsContext from "../../../contexts/eventsContext";
 import { containerStyle } from "./styles.css";
+import { getHref } from '../../../lib/router';
 
 interface Props {
   years: string[];

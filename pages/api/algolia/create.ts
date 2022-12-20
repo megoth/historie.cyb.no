@@ -1,9 +1,9 @@
 import sanity from '../../../lib/sanity';
 import { NowRequest, NowResponse } from '@vercel/node'
-import { getClient, getIndex } from '../../../lib/algolia';
+import { apiKey, getClient, getIndex } from '../../../lib/algolia';
 
 const handler = (req: NowRequest, res: NowResponse) => {
-  const algolia = getClient();
+  const algolia = getClient(apiKey);
 
   // Tip: Its good practice to include a shared secret in your webhook URLs and
   // validate it before proceeding with webhook handling. Omitted in this short

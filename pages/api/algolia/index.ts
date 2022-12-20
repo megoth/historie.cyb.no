@@ -1,13 +1,13 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import sanityClient from '../../../lib/sanity';
-import { getClient, getIndex } from '../../../lib/algolia';
+import { apiKey, getClient, getIndex } from '../../../lib/algolia';
 
 /**
  *  This function receives webhook POSTs from Sanity and updates, creates or
  *  deletes records in the corresponding Algolia indices.
  */
 const handler = (req: NowRequest, res: NowResponse) => {
-  const algolia = getClient()
+  const algolia = getClient(apiKey)
 
   // Tip: Its good practice to include a shared secret in your webhook URLs and
   // validate it before proceeding with webhook handling. Omitted in this short

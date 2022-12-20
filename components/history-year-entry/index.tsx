@@ -13,8 +13,9 @@ import Link from "../link";
 import cn from "classnames";
 import { useContext, useEffect, useState } from "react";
 import EventsContext from "../../contexts/eventsContext";
-import { getHref, toggleValueInArray } from "../../lib/utils";
+import { toggleValueInArray } from "../../lib/utils";
 import useHistory from "../../hooks/useHistory";
+import { getHref } from '../../lib/router';
 
 interface Props {
   events: Array<EventForListQuery>;

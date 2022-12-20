@@ -11,6 +11,7 @@ import cn from "classnames";
 import Logo from "../logo";
 import MenuButton from "./menu-button";
 import Container from "../container";
+import Search from '../search';
 
 interface Props {
   className?: string;
@@ -40,6 +41,7 @@ export default function Header({ className }: Props) {
         <Link href={"/"}>
           <Logo />
         </Link>
+        <Search />
         <button
           className={triggerStyle}
           type="button"
