@@ -50,7 +50,7 @@ export function getIndex(algolia: SearchClient) {
     // it is sent to Algolia.
     (document: SanityDocumentStub) => {
       switch (document._type) {
-        case 'post':
+        case 'page':
           return Object.assign({}, document, {
             href: getHrefForPage(document as unknown as PageQuery)
           })
