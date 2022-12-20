@@ -8,9 +8,16 @@ export const index = process.env.NEXT_PUBLIC_ALGOLIA_INDEX;
 export const apiKey = process.env.ALGOLIA_ADMIN_API_KEY;
 export const searchKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_KEY;
 
-export type SearchQuery = {
+export interface SearchQuery extends Record<string, any> {
   _id: string;
-  title: string,
+  _type: string;
+  title: string;
+  href: string;
+}
+
+interface PageQuery extends Omit<SearchQuery, "href"> {
+  slug: string;
+  parentSlug: string;
 }
 
 export function getClient(key: string) {
@@ -33,6 +40,8 @@ export function getIndex(algolia: SearchClient) {
         index: algoliaIndex,
         projection: `{
           title,
+          'slug': slug.current, 
+          'parentSlug': parent.page->slug.current,
         }`,
       },
     },
@@ -41,10 +50,10 @@ export function getIndex(algolia: SearchClient) {
     // it is sent to Algolia.
     (document: SanityDocumentStub) => {
       switch (document._type) {
-        // case 'post':
-        //   return Object.assign({}, document, {
-        //     custom: 'An additional custom field for posts, perhaps?',
-        //   })
+        case 'post':
+          return Object.assign({}, document, {
+            href: getHrefForPage(document as unknown as PageQuery)
+          })
         // case 'article':
         //   return {
         //     title: document.heading,
@@ -70,4 +79,8 @@ export function getIndex(algolia: SearchClient) {
     //   return true
     // }
   )
+}
+
+function getHrefForPage({ slug, parentSlug }: PageQuery): string {
+  return parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`;
 }
