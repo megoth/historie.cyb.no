@@ -2,7 +2,7 @@ import sanity from '../../../lib/sanity';
 import { NowRequest, NowResponse } from '@vercel/node'
 import { apiKey, getClient, getIndex } from '../../../lib/algolia';
 
-const handler = (req: NowRequest, res: NowResponse) => {
+const handler = async (req: NowRequest, res: NowResponse) => {
   const algolia = getClient(apiKey);
 
   // Tip: Its good practice to include a shared secret in your webhook URLs and
@@ -20,11 +20,10 @@ const handler = (req: NowRequest, res: NowResponse) => {
 
   const sanityAlgolia = getIndex(algolia);
 
-  return sanity
-    .fetch(query, { types })
-    // TODO: Algolia uses Sanity Client 2.x, while we're using Sanity Client 3.x
-    .then(ids => sanityAlgolia.webhookSync(sanity as any, { ids: { created: ids, updated: [], deleted: [] } }))
-    .then(() => res.status(200).send('ok'))
+  const ids = await sanity.fetch(query, { types });
+  // TODO: Algolia uses Sanity Client 2.x, while we're using Sanity Client 3.x
+  await sanityAlgolia.webhookSync(sanity as any, { ids: { created: ids, updated: [], deleted: [] } });
+  return res.status(200).send('ok');
 }
 
 export default handler

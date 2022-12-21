@@ -11,6 +11,8 @@ export default function SearchHit({ hit }: SearchHitProps) {
   return (
     <div>
       <Highlight hit={hit} attribute="title" />
+      <pre>(({hit.href}))</pre>
+      <pre>{JSON.stringify(hit, null, 2)}</pre>
     </div>
   );
 }

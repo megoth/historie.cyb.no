@@ -6,7 +6,7 @@ import { apiKey, getClient, getIndex } from '../../../lib/algolia';
  *  This function receives webhook POSTs from Sanity and updates, creates or
  *  deletes records in the corresponding Algolia indices.
  */
-const handler = (req: NowRequest, res: NowResponse) => {
+const handler = async (req: NowRequest, res: NowResponse) => {
   const algolia = getClient(apiKey)
 
   // Tip: Its good practice to include a shared secret in your webhook URLs and
@@ -24,10 +24,9 @@ const handler = (req: NowRequest, res: NowResponse) => {
   // configured serializers and optional visibility function. `webhookSync` will
   // inspect the webhook payload, make queries back to Sanity with the `sanity`
   // client and make sure the algolia indices are synced to match.
-  return sanityAlgolia
-    // TODO: Algolia uses Sanity Client 2.x, while we're using Sanity Client 3.x
-    .webhookSync(sanityClient as any, req.body)
-    .then(() => res.status(200).send('ok'))
+  // TODO: Algolia uses Sanity Client 2.x, while we're using Sanity Client 3.x
+  await sanityAlgolia.webhookSync(sanityClient as any, req.body);
+  return res.status(200).send('ok');
 }
 
 export default handler
