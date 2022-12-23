@@ -4,11 +4,17 @@ import indexer from 'sanity-algolia'
 import { highlight } from 'instantsearch.js/es/helpers';
 import { AlgoliaHit, BaseHit } from 'instantsearch.js';
 import { HitAttributeHighlightResult } from 'instantsearch.js/es/types/results';
+import { pageSlugs } from './pages';
 
 export const applicationId = process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID;
 export const index = process.env.NEXT_PUBLIC_ALGOLIA_INDEX;
 export const apiKey = process.env.ALGOLIA_ADMIN_API_KEY;
 export const searchKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_KEY;
+
+export const DOCUMENT_TYPES = {
+  EVENT: "event",
+  PAGE: "page",
+}
 
 export interface SearchQuery extends Record<string, any> {
   _id: string;
@@ -18,9 +24,28 @@ export interface SearchQuery extends Record<string, any> {
   body: string;
 }
 
-interface PageQuery extends Omit<SearchQuery, "href"> {
+interface EventQuery extends SearchQuery {
+  slug: string;
+}
+
+function convertEvent(document: EventQuery): SearchQuery {
+  return Object.assign({}, document, {
+    body: document.body || "",
+    href: `/${pageSlugs.HISTORY}/${document.slug}`
+  })
+}
+
+interface PageQuery extends SearchQuery {
   slug: string;
   parentSlug: string;
+}
+
+function convertPage(document: PageQuery): SearchQuery {
+  const { slug, parentSlug } = document;
+  return Object.assign({}, document, {
+    body: document.body || "",
+    href: parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`
+  })
 }
 
 export function focusWord<T extends BaseHit>(hit: AlgoliaHit<T>, attribute: string, padLength: number = 25): string {
@@ -56,7 +81,7 @@ export function getIndex(algolia: SearchClient) {
     //
     // _id and other system fields are handled automatically.
     {
-      page: {
+      [DOCUMENT_TYPES.PAGE]: {
         index: algoliaIndex,
         projection: `{
           title,
@@ -65,25 +90,23 @@ export function getIndex(algolia: SearchClient) {
           'body': pt::text(components[].text)
         }`,
       },
+      [DOCUMENT_TYPES.EVENT]: {
+        index: algoliaIndex,
+        projection: `{
+          'title': name,
+          'slug': slug.current, 
+          'body': pt::text(description)
+        }`,
+      },
     },
     // The second parameter is a function that maps from a fetched Sanity document
     // to an Algolia Record. Here you can do further mutations to the data before
     // it is sent to Algolia.
     (document: SanityDocumentStub) => {
       switch (document._type) {
-        case 'page':
-          return Object.assign({}, document, {
-            body: document.body || "",
-            href: getHrefForPage(document as unknown as PageQuery)
-          })
-        // case 'article':
-        //   return {
-        //     title: document.heading,
-        //     body: document.body,
-        //     authorNames: document.authorNames,
-        //   }
-        default:
-          return document
+        case DOCUMENT_TYPES.EVENT: return convertEvent(document as EventQuery);
+        case DOCUMENT_TYPES.PAGE: return convertPage(document as PageQuery);
+        default: return document
       }
     },
     // Visibility function (optional).
@@ -101,8 +124,4 @@ export function getIndex(algolia: SearchClient) {
     //   return true
     // }
   )
-}
-
-function getHrefForPage({ slug, parentSlug }: PageQuery): string {
-  return parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`;
 }

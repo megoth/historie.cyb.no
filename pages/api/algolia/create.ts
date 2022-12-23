@@ -1,6 +1,6 @@
 import sanity from '../../../lib/sanity';
 import { NowRequest, NowResponse } from '@vercel/node'
-import { apiKey, getClient, getIndex } from '../../../lib/algolia';
+import { apiKey, DOCUMENT_TYPES, getClient, getIndex } from '../../../lib/algolia';
 
 const handler = async (req: NowRequest, res: NowResponse) => {
   const algolia = getClient(apiKey);
@@ -15,7 +15,7 @@ const handler = async (req: NowRequest, res: NowResponse) => {
   }
 
   // Fetch the _id of all the documents we want to index
-  const types = ["page"];
+  const types = Object.values(DOCUMENT_TYPES);
   const query = `* [_type in $types && !(_id in path("drafts.**"))][]._id`
 
   const sanityAlgolia = getIndex(algolia);
