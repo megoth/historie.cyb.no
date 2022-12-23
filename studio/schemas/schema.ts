@@ -28,6 +28,7 @@ import membership from "./membership"
 import person from "./person"
 import fileComponent from "./fileComponent";
 import pageEvent from "./pageEvent";
+import honoraryMember from './honoraryMember';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -63,5 +64,6 @@ export default createSchema({
     group,
     membership,
     groupConstellation,
+    honoraryMember,
   ]),
 });

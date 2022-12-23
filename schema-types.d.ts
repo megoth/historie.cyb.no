@@ -211,6 +211,7 @@ Nødvendig
 
       /**
        * Dato - `Date`
+Nødvendig (for sortering)
        */
       date?: string;
 
@@ -307,6 +308,29 @@ Nødvendig
        * Medlemmer - `Array`
        */
       members?: Array<Sanity.Keyed<Membership>>;
+    }
+
+    /**
+     * Æresmedlem
+     */
+    interface HonoraryMember extends Sanity.Document {
+      _type: "honoraryMember";
+
+      /**
+       * Person - `Reference`
+Nødvendig
+       */
+      person?: Sanity.Reference<Person>;
+
+      /**
+       * Dato - `Date`
+       */
+      date?: string;
+
+      /**
+       * Notat - `String`
+       */
+      note?: string;
     }
 
     type BlockContent = Array<
@@ -531,6 +555,7 @@ Nødvendig
       | Album
       | Person
       | Group
-      | GroupConstellation;
+      | GroupConstellation
+      | HonoraryMember;
   }
 }

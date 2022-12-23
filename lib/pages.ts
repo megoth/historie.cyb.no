@@ -3,6 +3,7 @@ export const pageSlugs = {
   GALLERY: "bilder",
   GROUP: "styrer",
   HISTORY: "tidslinje",
+  HONORARY_MEMBERS: "aeresmedlemmer",
   SEARCH: "finn",
 }
 

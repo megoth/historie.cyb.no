@@ -924,7 +924,7 @@
         {
           "name": "date",
           "title": "Dato",
-          "description": "",
+          "description": "Nødvendig (for sortering)",
           "hidden": false,
           "readOnly": false,
           "codegen": {
@@ -935,7 +935,7 @@
             "codegen": {
               "required": false
             },
-            "description": null,
+            "description": "Nødvendig (for sortering)",
             "hidden": false,
             "name": "date",
             "readOnly": false,
@@ -1354,6 +1354,106 @@
                 "to": "membership"
               }
             ],
+            "list": null
+          }
+        }
+      ]
+    },
+    {
+      "codegen": {
+        "required": false
+      },
+      "description": null,
+      "hidden": false,
+      "readOnly": false,
+      "hasValidation": false,
+      "name": "honoraryMember",
+      "title": "Æresmedlem",
+      "type": "Document",
+      "fields": [
+        {
+          "name": "person",
+          "title": "Person",
+          "description": "Nødvendig",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": "Nødvendig",
+            "hidden": false,
+            "name": "person",
+            "readOnly": false,
+            "title": "Person",
+            "hasValidation": false,
+            "type": "Reference",
+            "to": [
+              {
+                "codegen": {
+                  "required": false
+                },
+                "description": null,
+                "hidden": false,
+                "name": null,
+                "readOnly": false,
+                "title": null,
+                "hasValidation": false,
+                "to": "person",
+                "type": "RegistryReference"
+              }
+            ],
+            "weak": false
+          }
+        },
+        {
+          "name": "date",
+          "title": "Dato",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "date",
+            "readOnly": false,
+            "title": "Dato",
+            "hasValidation": false,
+            "type": "Date"
+          }
+        },
+        {
+          "name": "note",
+          "title": "Notat",
+          "description": "",
+          "hidden": false,
+          "readOnly": false,
+          "codegen": {
+            "required": false
+          },
+          "hasValidation": false,
+          "definition": {
+            "codegen": {
+              "required": false
+            },
+            "description": null,
+            "hidden": false,
+            "name": "note",
+            "readOnly": false,
+            "title": "Notat",
+            "hasValidation": false,
+            "type": "String",
             "list": null
           }
         }
