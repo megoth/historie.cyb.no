@@ -1,4 +1,4 @@
-import { dataModules } from "../../lib/api/dataModules";
+import { dataModules } from "../../lib/api/data-modules";
 import { ComponentTypes } from './page';
 
 export default {

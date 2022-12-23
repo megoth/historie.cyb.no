@@ -1,7 +1,7 @@
 import { EventForListQuery } from "./history";
 import { AlbumQuery } from "./gallery";
 import { PageUpdateQuery } from "./page-updates";
-import { PageQuery, SubpageQuery } from './pages';
+import { SubpageQuery } from './pages';
 
 // IMPORTANT!!!
 // Make sure that dataModules and DataModules contains the same keys

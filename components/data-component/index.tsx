@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentProps } from "../page-components";
 import Events from "../events";
-import { DataModules } from "../../lib/api/dataModules";
+import { DataModules } from "../../lib/api/data-modules";
 import Albums from "../albums";
 import PageUpdates from "../page-updates";
 import Subpages from '../subpages';

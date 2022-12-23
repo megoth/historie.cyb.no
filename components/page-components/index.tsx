@@ -4,7 +4,7 @@ import TextComponent from "../text-component";
 import ButtonComponent from "../button-component";
 import ButtonsComponent from "../buttons-component";
 import DataComponent from "../data-component";
-import { DataModules } from "../../lib/api/dataModules";
+import { DataModules } from "../../lib/api/data-modules";
 import Container from "../container";
 import { ComponentTypes } from '../../studio/schemas/page';
 import SubpagesComponent from '../subpages';
