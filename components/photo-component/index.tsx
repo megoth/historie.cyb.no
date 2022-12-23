@@ -22,15 +22,11 @@ export default function PhotoComponent({ component }: Props) {
         alt={photo.alt}
       />
       {photo.description ?
-        <caption className={captionStyle}>
+        <figcaption className={captionStyle}>
           <TextBlock text={photo.description} />
-          <div>
-            <DownloadButton href={image.url()} />
-          </div>
-        </caption> :
+        </figcaption> :
         <caption className={captionStyle} aria-hidden={true}>
           <span className={captionAltStyle}>{photo.alt}</span>
-          <DownloadButton href={image.url()} postFix={"bilde"} />
         </caption>
       }
     </figure>
