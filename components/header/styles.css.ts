@@ -7,23 +7,18 @@ export const headerStyle = style({
   alignItems: "center",
   background: vars.color.base,
   display: "flex",
+  gap: "1em",
   height: headerHeight,
   padding: 0,
   justifyContent: "space-between",
 });
 
-export const triggerStyle = style({
-  alignItems: "center",
-  background: "transparent",
-  border: 0,
-  color: vars.color.text,
-  cursor: "pointer",
-  display: "flex",
-  fontSize: 12,
-  outline: 0,
-  padding: 0,
-  textTransform: "uppercase",
-});
-export const triggerTextStyle = style({
-  marginRight: "0.5rem",
-});
+export const headerChildStyle = style({
+  flexGrow: 0,
+  selectors: {
+    "&:first-child": {
+      flexGrow: 1,
+    }
+  }
+})
+

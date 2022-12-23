@@ -3,9 +3,6 @@ export const pageSlugs = {
   GALLERY: "bilder",
   GROUP: "styrer",
   HISTORY: "tidslinje",
+  SEARCH: "finn",
 }
 
-export const pageTitles = {
-  GALLERY: "Bilder",
-  HISTORY: "Tidslinje",
-}

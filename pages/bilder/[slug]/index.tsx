@@ -12,7 +12,8 @@ import {
 import Loading from "../../../components/loading";
 import Album from "../../../components/album";
 import { getPage, PageQuery } from '../../../lib/api/pages';
-import { pageSlugs, pageTitles } from '../../../lib/pages';
+import { pageSlugs } from '../../../lib/pages';
+import { translations } from '../../../lib/translations';
 
 interface Props extends SiteSettingsPage {
   gallery: PageQuery;
@@ -25,7 +26,7 @@ export default function AlbumPage({ gallery, album, siteSettings }: Props) {
     return <ErrorPage statusCode={404}/>;
   }
   const crumbs = [
-    { href: `/${pageSlugs.GALLERY}`, text: gallery?.title || pageTitles.GALLERY }
+    { href: `/${pageSlugs.GALLERY}`, text: gallery?.title || translations.GALLERY }
   ]
   return (
     <Layout pageTitle={album.name} siteSettings={siteSettings} crumbs={crumbs}>

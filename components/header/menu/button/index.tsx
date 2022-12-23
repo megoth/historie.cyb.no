@@ -6,7 +6,7 @@ interface Props {
   open: boolean;
 }
 
-export default function MenuButton({ open }: Props) {
+export default function HeaderMenuButton({ open }: Props) {
   return (
     <div className={cn(menuButtonStyle, { open })}>
       <span />

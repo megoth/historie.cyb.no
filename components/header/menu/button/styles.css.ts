@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { vars } from "../../styles.css";
+import { vars } from "../../../styles.css";
 
 // taken from https://codepen.io/designcouch/pen/Atyop
 export const menuButtonStyle = style({

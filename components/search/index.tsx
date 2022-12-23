@@ -4,6 +4,7 @@ import { hitsContainerStyle, hitsStyle } from './styles.css';
 import { Hits, useInstantSearch } from 'react-instantsearch-hooks-web';
 import SearchInput from './input';
 import SearchNoHits from './no-hits';
+import Container from '../container';
 
 export default function Search() {
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -11,7 +12,7 @@ export default function Search() {
   useEffect(() => setDialogVisible(results.query?.length > 0), [results.query]);
 
   return (
-    <div>
+    <Container>
       <SearchInput />
       {dialogVisible && (
         <div className={hitsContainerStyle}>
@@ -19,6 +20,6 @@ export default function Search() {
           {results.hits.length === 0 && <SearchNoHits className={hitsStyle}/>}
         </div>
       )}
-    </div>
+    </Container>
   )
 }

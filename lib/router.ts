@@ -41,3 +41,7 @@ export function getHref(router: NextRouter, route?: Route) {
   // putting it all together
   return path + queryString + hashString;
 }
+
+export function getSingleValueFromQuery(str: string | string[]): string {
+  return Array.isArray(str) ? str[0] : str;
+}

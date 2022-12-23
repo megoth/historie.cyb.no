@@ -12,7 +12,8 @@ import {
   getEvent,
 } from "../../lib/api/history";
 import { getPage, PageQuery } from '../../lib/api/pages';
-import { pageSlugs, pageTitles } from '../../lib/pages';
+import { pageSlugs } from '../../lib/pages';
+import { translations } from '../../lib/translations';
 
 interface Props extends SiteSettingsPage {
   event: EventQuery;
@@ -25,7 +26,7 @@ export default function EventPage({ event, historyPage, siteSettings }: Props) {
     return <ErrorPage statusCode={404} />;
   }
   const crumbs = [
-    { href: `/${pageSlugs.HISTORY}`, text: historyPage?.title || pageTitles.HISTORY }
+    { href: `/${pageSlugs.HISTORY}`, text: historyPage?.title || translations.HISTORY }
   ]
   return (
     <Layout pageTitle={event.name} siteSettings={siteSettings} crumbs={crumbs}>

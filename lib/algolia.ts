@@ -1,7 +1,9 @@
-import algoliasearch from 'algoliasearch'
+import algoliasearch, { SearchClient } from 'algoliasearch'
 import { SanityDocumentStub } from '@sanity/client'
 import indexer from 'sanity-algolia'
-import { SearchClient } from 'algoliasearch/dist/algoliasearch';
+import { highlight } from 'instantsearch.js/es/helpers';
+import { AlgoliaHit, BaseHit } from 'instantsearch.js';
+import { HitAttributeHighlightResult } from 'instantsearch.js/es/types/results';
 
 export const applicationId = process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID;
 export const index = process.env.NEXT_PUBLIC_ALGOLIA_INDEX;
@@ -13,11 +15,29 @@ export interface SearchQuery extends Record<string, any> {
   _type: string;
   title: string;
   href: string;
+  body: string;
 }
 
 interface PageQuery extends Omit<SearchQuery, "href"> {
   slug: string;
   parentSlug: string;
+}
+
+export function focusWord<T extends BaseHit>(hit: AlgoliaHit<T>, attribute: string, padLength: number = 25): string {
+  const highlightResultElement = hit._highlightResult[attribute] as HitAttributeHighlightResult;
+  const matchedWord = highlightResultElement?.matchedWords[0] || "";
+  const value = highlight({ attribute, hit });
+  const index = value?.indexOf(matchedWord);
+  const markBefore = 40; // length of default mark tag _with_ attributes
+  const markAfter = 7; // length of </mark>
+  const focusStart = index - markBefore - padLength;
+  const start = Math.max(focusStart, 0);
+  const focusEnd = index + matchedWord.length + markAfter + padLength;
+  const end = Math.min(focusEnd, value?.length);
+  const prefix = start > 0 ? "&hellip;" : "";
+  const focus = value.substring(start, end);
+  const postfix = focusEnd < value.length ? "&hellip;" : "";
+  return prefix + focus + postfix;
 }
 
 export function getClient(key: string) {
@@ -42,6 +62,7 @@ export function getIndex(algolia: SearchClient) {
           title,
           'slug': slug.current, 
           'parentSlug': parent.page->slug.current,
+          'body': pt::text(components[].text)
         }`,
       },
     },
@@ -52,6 +73,7 @@ export function getIndex(algolia: SearchClient) {
       switch (document._type) {
         case 'page':
           return Object.assign({}, document, {
+            body: document.body || "",
             href: getHrefForPage(document as unknown as PageQuery)
           })
         // case 'article':

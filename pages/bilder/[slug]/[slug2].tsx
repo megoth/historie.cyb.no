@@ -13,7 +13,8 @@ import {
 import Loading from "../../../components/loading";
 import AlbumImage from '../../../components/album-image';
 import { getPage, PageQuery } from '../../../lib/api/pages';
-import { pageSlugs, pageTitles } from '../../../lib/pages';
+import { pageSlugs } from '../../../lib/pages';
+import { translations } from '../../../lib/translations';
 
 interface Props extends SiteSettingsPage {
   gallery: PageQuery;
@@ -27,7 +28,7 @@ export default function AlbumImagePage({ gallery, album, photo, siteSettings }: 
     return <ErrorPage statusCode={404} />;
   }
   const crumbs = [
-    { href: `/${pageSlugs.GALLERY}`, text: gallery?.title || pageTitles.GALLERY },
+    { href: `/${pageSlugs.GALLERY}`, text: gallery?.title || translations.GALLERY },
     { href: `/${pageSlugs.GALLERY}/${album.slug}`, text: album.name }
   ]
   return (
