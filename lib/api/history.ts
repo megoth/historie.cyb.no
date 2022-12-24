@@ -1,6 +1,7 @@
 import client, { getClient } from "../sanity";
 import { getUrlForGroup } from '../urls';
 import { semesters } from '../../studio/schemas/groupConstellation';
+import { pageSlugs } from '../pages';
 
 export interface EventQuery
   extends Omit<Sanity.Schema.Event, "slug" | "sources" | "associations"> {
@@ -17,7 +18,7 @@ export interface EventForListQuery
 export async function getAllEventsForHistoryPage(
   preview: boolean
 ): Promise<Array<EventForListQuery>> {
-  const [events, groups, pages] = await Promise.all([
+  const [events, groups, honoraryMembers, pages] = await Promise.all([
     getClient(preview)
       .fetch(`*[ _type == "event" ] | order(year asc, date asc){
     name,
@@ -36,6 +37,12 @@ export async function getAllEventsForHistoryPage(
     'leader':members[0].person->name,
   }`),
     getClient(preview)
+      .fetch(`*[ _type == "honoraryMember" ] | order(date desc){
+    person->,
+    date,
+    note,
+  }`),
+    getClient(preview)
       .fetch(`*[ _type == "page" && event.date != null ]{
       'name': event.name,
       'slug': slug.current,
@@ -51,6 +58,13 @@ export async function getAllEventsForHistoryPage(
       year,
       semester,
       href: getUrlForGroup(group.slug.current, year, semester)
+    })),
+    ...honoraryMembers.filter(({ date }) => !!date).map(({ person, date }) => ({
+      name: `${person.name} utnevnt til æresmedlem av Cybernetisk Selskab`,
+      year: date.substring(0, 4),
+      date,
+      major: true,
+      href: `/${pageSlugs.HONORARY_MEMBERS}`
     })),
     ...pages.map(({ name, slug, parentSlug, date, major }) => ({
       name,

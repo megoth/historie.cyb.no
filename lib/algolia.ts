@@ -17,6 +17,7 @@ export const DOCUMENT_TYPES = {
   ALBUM: "album",
   GROUP_CONSTELLATION: "groupConstellation",
   EVENT: "event",
+  HONORARY_MEMBER: "honoraryMember",
   PAGE: "page",
 }
 
@@ -71,6 +72,17 @@ function convertGroupConstellation(document: GroupConstellationQuery): SearchQue
       return `- ${title}: ${document.names[index]}${note}`
     }).join('\n') || "",
     href: getUrlForGroup(document.groupSlug, document.year, document.semester),
+  })
+}
+
+interface HonoraryMemberQuery extends baseQuery {
+  title: string
+}
+
+function convertHonoraryMember(document: HonoraryMemberQuery): SearchQuery {
+  return Object.assign({}, document, {
+    body: "",
+    href: `/${pageSlugs.HONORARY_MEMBERS}`
   })
 }
 
@@ -147,6 +159,12 @@ export function getIndex(algolia: SearchClient) {
           'notes':members[].note
         }`,
       },
+      [DOCUMENT_TYPES.HONORARY_MEMBER]: {
+        index: algoliaIndex,
+        projection: `{
+          'title': person.name,
+        }`,
+      },
       [DOCUMENT_TYPES.PAGE]: {
         index: algoliaIndex,
         projection: `{
@@ -168,6 +186,8 @@ export function getIndex(algolia: SearchClient) {
           return convertEvent(document as EventQuery);
         case DOCUMENT_TYPES.GROUP_CONSTELLATION:
           return convertGroupConstellation(document as GroupConstellationQuery);
+        case DOCUMENT_TYPES.HONORARY_MEMBER:
+          return convertHonoraryMember(document as HonoraryMemberQuery);
         case DOCUMENT_TYPES.PAGE:
           return convertPage(document as PageQuery);
         default:
