@@ -7,6 +7,7 @@ import event from "./event";
 import fileComponent from "./fileComponent";
 import group from "./group"
 import groupConstellation from "./groupConstellation"
+import honoraryMember from "./honoraryMember"
 import imageComponent from "./imageComponent";
 import link from "./link";
 import membership from "./membership"
@@ -48,6 +49,7 @@ export const schemaTypes = [
   groupConstellation, // TODO fix preview
   person,
   membership, // TODO fix preview
+  honoraryMember,
   event, // TODO fix preview
   source, // TODO fix preview
 ];

@@ -238,6 +238,29 @@ Nødvendig
     }
 
     /**
+     * Æresmedlem
+     */
+    interface HonoraryMember extends Sanity.Document {
+      _type: "honoraryMember";
+
+      /**
+       * Person - `Reference`
+Nødvendig
+       */
+      person?: Sanity.Reference<Person>;
+
+      /**
+       * Dato - `Date`
+       */
+      date?: string;
+
+      /**
+       * Notat - `String`
+       */
+      note?: string;
+    }
+
+    /**
      * Historie
      */
     interface Event extends Sanity.Document {
@@ -531,6 +554,7 @@ Nødvendig
       | Group
       | GroupConstellation
       | Person
+      | HonoraryMember
       | Event
       | Source;
   }
