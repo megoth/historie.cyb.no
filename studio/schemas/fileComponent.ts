@@ -21,11 +21,11 @@ export default {
       title: "name",
       subtitle: "file.name",
     },
-    prepare({ title }) {
-      return {
-        title,
-        subtitle: `Fil`,
-      };
-    },
+    // prepare({ title }) {
+    //   return {
+    //     title,
+    //     subtitle: `Fil`,
+    //   };
+    // },
   },
 };

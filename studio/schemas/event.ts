@@ -77,12 +77,12 @@ export default {
       major: "major",
       slug: "slug.current",
     },
-    prepare({ title, major, slug }) {
-      return {
-        title,
-        subtitle: slug,
-        media: major ? AiFillStar : AiOutlineStar,
-      };
-    },
+    // prepare({ title, major, slug }) {
+    //   return {
+    //     title,
+    //     subtitle: slug,
+    //     media: major ? AiFillStar : AiOutlineStar,
+    //   };
+    // },
   },
 };

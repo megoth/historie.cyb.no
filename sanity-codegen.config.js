@@ -1,3 +1,3 @@
 export default {
-  schemaPath: "./studio/schemas/schema.ts",
+  schemaPath: "./studio/schemas/index.ts",
 };

@@ -50,11 +50,11 @@ export default {
       year: "year",
       semester: "semester",
     },
-    prepare({ title, year, semester }) {
-      return {
-        title,
-        subtitle: `${year.substr(0, 4)} (${semester})`
-      };
-    },
+    // prepare({ title, year, semester }) {
+    //   return {
+    //     title,
+    //     subtitle: `${year.substr(0, 4)} (${semester})`
+    //   };
+    // },
   },
 };

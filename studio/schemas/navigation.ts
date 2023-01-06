@@ -1,10 +1,10 @@
-import { GrNavigate } from "react-icons/gr";
+import { FiMenu } from "react-icons/fi";
 
 export default {
   name: "navigation",
   title: "Navigering",
   type: "document",
-  icon: GrNavigate,
+  icon: FiMenu,
   fields: [
     {
       name: "title",
@@ -28,12 +28,12 @@ export default {
       title: "title",
       subtitle: "navId.current",
     },
-    prepare({ title, subtitle }) {
-      return {
-        title,
-        subtitle,
-        media: GrNavigate,
-      };
-    },
+    // prepare({ title, subtitle }) {
+    //   return {
+    //     title,
+    //     subtitle,
+    //     media: GrNavigate,
+    //   };
+    // },
   },
 };

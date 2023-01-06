@@ -21,12 +21,12 @@ export default {
     select: {
       title: "type",
     },
-    prepare(selection) {
-      const { title } = selection;
-      return {
-        title,
-        subtitle: `Data modul`,
-      };
-    },
+    // prepare(selection) {
+    //   const { title } = selection;
+    //   return {
+    //     title,
+    //     subtitle: `Data modul`,
+    //   };
+    // },
   },
 };

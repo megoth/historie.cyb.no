@@ -16,12 +16,12 @@ export default {
     select: {
       buttons: "buttons",
     },
-    prepare(selection) {
-      const { buttons } = selection;
-      return {
-        title: buttons.map((button) => button.text).join(", "),
-        subtitle: "Knapper",
-      };
-    },
+    // prepare(selection) {
+    //   const { buttons } = selection;
+    //   return {
+    //     title: buttons.map((button) => button.text).join(", "),
+    //     subtitle: "Knapper",
+    //   };
+    // },
   },
 };

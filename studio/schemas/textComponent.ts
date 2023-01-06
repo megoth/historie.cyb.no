@@ -27,11 +27,11 @@ export default {
       text: "text",
       variant: "variant",
     },
-    prepare({ text, variant }) {
-      return {
-        title: text[0]?.children[0]?.text,
-        subtitle: `Tekst${variant ? ` (${variant})` : ""}`,
-      };
-    },
+    // prepare({ text, variant }) {
+    //   return {
+    //     title: text[0]?.children[0]?.text,
+    //     subtitle: `Tekst${variant ? ` (${variant})` : ""}`,
+    //   };
+    // },
   },
 };

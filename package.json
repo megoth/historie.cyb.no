@@ -9,7 +9,7 @@
     "build:web": "next build",
     "start:web": "next start",
     "build:sanity": "cd studio && npx @sanity/cli build ../public/studio -y && cd ..",
-    "start:sanity": "cp .env ./studio/.env.development && cd studio && npx @sanity/cli start",
+    "start:sanity": "cp .env ./studio/.env.development && cd studio && npm run dev",
     "postinstall": "lerna bootstrap",
     "lint": "prettier --check \"**/*.ts(x)\"",
     "lint:fix": "prettier --write \"**/*.ts(x)\"",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@sanity/block-content-to-markdown": "^0.0.5",
     "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/client": "^3.1.0",
+    "@sanity/client": "^4.0.0",
     "@sanity/image-url": "^1.0.1",
     "@vercel/node": "^2.8.0",
     "algoliasearch": "^4.14.2",
@@ -40,7 +40,8 @@
   },
   "devDependencies": {
     "@sanity-codegen/schema-codegen": "^1.0.0-alpha.11",
-    "@sanity/cli": "^2.34.0",
+    "@sanity/cli": "^3.1.4",
+    "@sanity/types": "^3.1.4",
     "@types/node": "^18.8.2",
     "@vanilla-extract/babel-plugin": "^1.2.0",
     "@vanilla-extract/css": "^1.9.1",

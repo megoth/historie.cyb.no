@@ -14,11 +14,11 @@ export default {
   initialValue: {
     sortReverse: false,
   },
-  preview: {
-    prepare() {
-      return {
-        title: "Liste med undersider",
-      };
-    },
-  },
+  // preview: {
+  //   prepare() {
+  //     return {
+  //       title: "Liste med undersider",
+  //     };
+  //   },
+  // },
 };

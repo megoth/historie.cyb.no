@@ -67,12 +67,12 @@ export default {
       title: "name",
       subtitle: "slug.current",
     },
-    prepare({ title, subtitle, slug }) {
-      return {
-        title,
-        subtitle,
-        media: RiPagesLine,
-      };
-    },
+    // prepare({ title, subtitle, slug }) {
+    //   return {
+    //     title,
+    //     subtitle,
+    //     media: RiPagesLine,
+    //   };
+    // },
   },
 };

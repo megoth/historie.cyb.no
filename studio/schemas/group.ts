@@ -40,11 +40,11 @@ export default {
       slug: "slug.current",
       order: "order"
     },
-    prepare({ title, slug, order }) {
-      return {
-        title,
-        subtitle: `${slug} (${order})`
-      };
-    },
+    // prepare({ title, slug, order }) {
+    //   return {
+    //     title,
+    //     subtitle: `${slug} (${order})`
+    //   };
+    // },
   },
 };

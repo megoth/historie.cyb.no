@@ -3,6 +3,241 @@
 declare namespace Sanity {
   namespace Schema {
     /**
+     * Side
+     */
+    interface Page extends Sanity.Document {
+      _type: "page";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Tittel - `String`
+       */
+      title?: string;
+
+      /**
+       * Slug - `Slug`
+Nødvendig
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Foreldreside - `RegistryReference`
+       */
+      parent?: ParentPage;
+
+      /**
+       * Beskrivelse - `Text`
+       */
+      description?: string;
+
+      /**
+       * Presentasjon som hendelse - `RegistryReference`
+Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her
+       */
+      event?: PageEvent;
+
+      /**
+       * Innhold - `Array`
+       */
+      components?: Array<
+        | Sanity.Keyed<TextComponent>
+        | Sanity.Keyed<ButtonComponent>
+        | Sanity.Keyed<ButtonsComponent>
+        | Sanity.Keyed<DataComponent>
+        | Sanity.Keyed<FileComponent>
+        | Sanity.Keyed<ImageComponent>
+        | Sanity.Keyed<SubpagesComponent>
+      >;
+    }
+
+    /**
+     * Site Settings
+     */
+    interface SiteSettings extends Sanity.Document {
+      _type: "siteSettings";
+
+      /**
+       * Sidens tittel - `String`
+       */
+      title?: string;
+
+      /**
+       * Beskrivelse av siden - `Text`
+       */
+      description?: string;
+
+      /**
+       * Hovedmeny - `Reference`
+       */
+      mainNav?: Sanity.Reference<Navigation>;
+
+      /**
+       * Undermeny - `Reference`
+       */
+      subNav?: Sanity.Reference<Navigation>;
+
+      /**
+       * Tekst i foten - `Array`
+       */
+      footer?: Array<Sanity.Keyed<Sanity.Block>>;
+    }
+
+    /**
+     * Navigering
+     */
+    interface Navigation extends Sanity.Document {
+      _type: "navigation";
+
+      /**
+       * Title - `String`
+       */
+      title?: string;
+
+      /**
+       * Navigation Id - `Slug`
+       */
+      navId?: {
+        _type: "navId";
+        current: string;
+      };
+
+      /**
+       * Navigation items - `Array`
+       */
+      items?: Array<Sanity.Keyed<NavigationItem>>;
+    }
+
+    /**
+     * Album
+     */
+    interface Album extends Sanity.Document {
+      _type: "album";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Slug - `Slug`
+Nødvendig
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Dato - `Date`
+Nødvendig (for sortering)
+       */
+      date?: string;
+
+      /**
+       * Bilder - `Array`
+Øverste bildet vil bli thumbnail for album
+       */
+      images?: Array<Sanity.Keyed<Photo>>;
+    }
+
+    /**
+     * Gruppe
+     */
+    interface Group extends Sanity.Document {
+      _type: "group";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Rekkefølge - `Number`
+Nødvendig (0 og oppover)
+       */
+      order?: number;
+
+      /**
+       * Slug - `Slug`
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Beskrivelse - `Array`
+       */
+      description?: Array<Sanity.Keyed<Sanity.Block>>;
+    }
+
+    /**
+     * Gruppesammensetning
+     */
+    interface GroupConstellation extends Sanity.Document {
+      _type: "groupConstellation";
+
+      /**
+       * Gruppe - `Reference`
+Nødvendig
+       */
+      group?: Sanity.Reference<Group>;
+
+      /**
+       * År - `Date`
+Nødvendig
+       */
+      year?: string;
+
+      /**
+       * Semester - `String`
+Nødvendig
+       */
+      semester?: "vår" | "høst";
+
+      /**
+       * Medlemmer - `Array`
+       */
+      members?: Array<Sanity.Keyed<Membership>>;
+    }
+
+    /**
+     * Person
+     */
+    interface Person extends Sanity.Document {
+      _type: "person";
+
+      /**
+       * Navn - `String`
+Nødvendig
+       */
+      name?: string;
+
+      /**
+       * Brukernavn - `Slug`
+       */
+      slug?: {
+        _type: "slug";
+        current: string;
+      };
+
+      /**
+       * Profil - `Array`
+       */
+      profile?: Array<Sanity.Keyed<Sanity.Block>>;
+    }
+
+    /**
      * Historie
      */
     interface Event extends Sanity.Document {
@@ -73,264 +308,6 @@ Nødvendig
        * Lenke - `Url`
        */
       url?: string;
-    }
-
-    /**
-     * Site Settings
-     */
-    interface SiteSettings extends Sanity.Document {
-      _type: "siteSettings";
-
-      /**
-       * Sidens tittel - `String`
-       */
-      title?: string;
-
-      /**
-       * Beskrivelse av siden - `Text`
-       */
-      description?: string;
-
-      /**
-       * Hovedmeny - `Reference`
-       */
-      mainNav?: Sanity.Reference<Navigation>;
-
-      /**
-       * Undermeny - `Reference`
-       */
-      subNav?: Sanity.Reference<Navigation>;
-
-      /**
-       * Tekst i foten - `Array`
-       */
-      footer?: Array<Sanity.Keyed<Sanity.Block>>;
-    }
-
-    /**
-     * Side
-     */
-    interface Page extends Sanity.Document {
-      _type: "page";
-
-      /**
-       * Navn - `String`
-Nødvendig
-       */
-      name?: string;
-
-      /**
-       * Tittel - `String`
-       */
-      title?: string;
-
-      /**
-       * Slug - `Slug`
-Nødvendig
-       */
-      slug?: {
-        _type: "slug";
-        current: string;
-      };
-
-      /**
-       * Foreldreside - `RegistryReference`
-       */
-      parent?: ParentPage;
-
-      /**
-       * Beskrivelse - `Text`
-       */
-      description?: string;
-
-      /**
-       * Presentasjon som hendelse - `RegistryReference`
-Om du ønsker å ha med teksten i tidslinjen, fyll ut informasjonen her
-       */
-      event?: PageEvent;
-
-      /**
-       * Innhold - `Array`
-       */
-      components?: Array<
-        | Sanity.Keyed<TextComponent>
-        | Sanity.Keyed<ButtonComponent>
-        | Sanity.Keyed<ButtonsComponent>
-        | Sanity.Keyed<DataComponent>
-        | Sanity.Keyed<FileComponent>
-        | Sanity.Keyed<ImageComponent>
-        | Sanity.Keyed<SubpagesComponent>
-      >;
-    }
-
-    /**
-     * Navigering
-     */
-    interface Navigation extends Sanity.Document {
-      _type: "navigation";
-
-      /**
-       * Title - `String`
-       */
-      title?: string;
-
-      /**
-       * Navigation Id - `Slug`
-       */
-      navId?: {
-        _type: "navId";
-        current: string;
-      };
-
-      /**
-       * Navigation items - `Array`
-       */
-      items?: Array<Sanity.Keyed<NavigationItem>>;
-    }
-
-    /**
-     * Album
-     */
-    interface Album extends Sanity.Document {
-      _type: "album";
-
-      /**
-       * Navn - `String`
-Nødvendig
-       */
-      name?: string;
-
-      /**
-       * Slug - `Slug`
-Nødvendig
-       */
-      slug?: {
-        _type: "slug";
-        current: string;
-      };
-
-      /**
-       * Dato - `Date`
-Nødvendig (for sortering)
-       */
-      date?: string;
-
-      /**
-       * Bilder - `Array`
-Øverste bildet vil bli thumbnail for album
-       */
-      images?: Array<Sanity.Keyed<Photo>>;
-    }
-
-    /**
-     * Person
-     */
-    interface Person extends Sanity.Document {
-      _type: "person";
-
-      /**
-       * Navn - `String`
-Nødvendig
-       */
-      name?: string;
-
-      /**
-       * Brukernavn - `Slug`
-       */
-      slug?: {
-        _type: "slug";
-        current: string;
-      };
-
-      /**
-       * Profil - `Array`
-       */
-      profile?: Array<Sanity.Keyed<Sanity.Block>>;
-    }
-
-    /**
-     * Gruppe
-     */
-    interface Group extends Sanity.Document {
-      _type: "group";
-
-      /**
-       * Navn - `String`
-Nødvendig
-       */
-      name?: string;
-
-      /**
-       * Rekkefølge - `Number`
-Nødvendig (0 og oppover)
-       */
-      order?: number;
-
-      /**
-       * Slug - `Slug`
-       */
-      slug?: {
-        _type: "slug";
-        current: string;
-      };
-
-      /**
-       * Beskrivelse - `Array`
-       */
-      description?: Array<Sanity.Keyed<Sanity.Block>>;
-    }
-
-    /**
-     * Gruppesammensetning
-     */
-    interface GroupConstellation extends Sanity.Document {
-      _type: "groupConstellation";
-
-      /**
-       * Gruppe - `Reference`
-Nødvendig
-       */
-      group?: Sanity.Reference<Group>;
-
-      /**
-       * År - `Date`
-Nødvendig
-       */
-      year?: string;
-
-      /**
-       * Semester - `String`
-Nødvendig
-       */
-      semester?: "vår" | "høst";
-
-      /**
-       * Medlemmer - `Array`
-       */
-      members?: Array<Sanity.Keyed<Membership>>;
-    }
-
-    /**
-     * Æresmedlem
-     */
-    interface HonoraryMember extends Sanity.Document {
-      _type: "honoraryMember";
-
-      /**
-       * Person - `Reference`
-Nødvendig
-       */
-      person?: Sanity.Reference<Person>;
-
-      /**
-       * Dato - `Date`
-       */
-      date?: string;
-
-      /**
-       * Notat - `String`
-       */
-      note?: string;
     }
 
     type BlockContent = Array<
@@ -547,15 +524,14 @@ Nødvendig
     };
 
     type Document =
-      | Event
-      | Source
-      | SiteSettings
       | Page
+      | SiteSettings
       | Navigation
       | Album
-      | Person
       | Group
       | GroupConstellation
-      | HonoraryMember;
+      | Person
+      | Event
+      | Source;
   }
 }

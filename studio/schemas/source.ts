@@ -25,12 +25,12 @@ export default {
       title: "text",
       url: "url",
     },
-    prepare(selection) {
-      const { title, url } = selection;
-      return {
-        title,
-        media: url ? BsLink45Deg : FiBook,
-      };
-    },
+    // prepare(selection) {
+    //   const { title, url } = selection;
+    //   return {
+    //     title,
+    //     media: url ? BsLink45Deg : FiBook,
+    //   };
+    // },
   },
 };

@@ -31,12 +31,12 @@ export default {
       title: "text",
       subtitle: "variant",
     },
-    prepare(selection) {
-      const { title, subtitle } = selection;
-      return {
-        title,
-        subtitle: `Knapp${subtitle ? ` (${subtitle})` : ""}`,
-      };
-    },
+    // prepare(selection) {
+    //   const { title, subtitle } = selection;
+    //   return {
+    //     title,
+    //     subtitle: `Knapp${subtitle ? ` (${subtitle})` : ""}`,
+    //   };
+    // },
   },
 };

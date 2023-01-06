@@ -29,11 +29,11 @@ export default {
       title: "person.name",
       subtitle: "title"
     },
-    prepare({ title, subtitle }) {
-      return {
-        title,
-        subtitle: subtitle || "Medlem"
-      };
-    },
+    // prepare({ title, subtitle }) {
+    //   return {
+    //     title,
+    //     subtitle: subtitle || "Medlem"
+    //   };
+    // },
   },
 };

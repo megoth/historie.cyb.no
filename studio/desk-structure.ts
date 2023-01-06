@@ -1,7 +1,7 @@
-import S from "@sanity/desk-tool/structure-builder";
 import { FiSettings } from "react-icons/fi";
+import { StructureBuilder } from 'sanity/desk';
 
-export default () =>
+export default (S: StructureBuilder) =>
   S.list()
     .title("Base")
     .items([

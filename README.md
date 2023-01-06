@@ -59,8 +59,14 @@ You probably want to start describing the data you need. To do this, we need to 
 structure of this data by adding one or more [schemas](https://www.sanity.io/docs/schema-types) to
 `studio/schemas`. You can work with this data by running Sanity Studio.
 
-When you're happy with your data and have something to test with, you probably want to present this
-in the UI somehow. To do this we need to hook up one or more [GROQ](https://www.sanity.io/docs/groq)
+Once your happy with your data, remember to generate types for the schemas by running:
+
+```
+npm run generate:types
+```
+
+When you have data to test with, you probably want to present this in the UI somehow.
+To do this we need to hook up one or more [GROQ](https://www.sanity.io/docs/groq)
 queries in `lib/api`. These are then tied into `pages`, where we tell Next.js that these queries
 should be run when compiling the site into a static webpage.
 
