@@ -25,7 +25,7 @@ export default function Event({ event }: Props) {
         )}
       </p>
       {event.description && <TextBlock text={event.description} />}
-      {event.sources && (
+      {event.sources?.length > 0 && (
         <>
           <h2>Kilder</h2>
           <ul className={listStyle}>
