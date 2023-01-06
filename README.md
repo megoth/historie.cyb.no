@@ -2,9 +2,16 @@
 
 This is the system to manage the historic portal of [Cybernetic Society](https://cyb.no/) (CYB),
 the institute association at the Department of Computer Science at the University of Oslo. It's
-implemented using [Next.js](https://nextjs.org/), [Sanity](https://www.sanity.io/),
-[TypeScript](https://www.typescriptlang.org/) and [vanilla-extract](https://vanilla-extract.style/),
-and produces a static website that lives at [historie.cyb.no](https://historie.cyb.no).
+implemented using Next.js, Sanity, TypeScript, vanilla-extract, and Algolia, and produces a
+static website that lives at [historie.cyb.no](https://historie.cyb.no).
+
+- [Next.js](https://nextjs.org/) is a React framework that gives us a set of features and guidelines
+- [Sanity](https://www.sanity.io/) is a headless CMS that holds all of our data
+- [TypeScript](https://www.typescriptlang.org/) is a superset of JavaScript, which amongst others
+  gives us types, which prevents us introducing a lot of buggy code
+- [vanilla-extract](https://vanilla-extract.style/) is a way of writing CSS with TypeScript
+- [Algolia](https://www.algolia.com/) is a headless search engine, that integrates with Sanity so
+  that we can index our data and offer a search feature on our webpage
 
 ## Running the front-end
 
@@ -60,6 +67,9 @@ should be run when compiling the site into a static webpage.
 The data is then funneled into the various pages, that consists of React components. Depending on
 the complexity of the functionality you might need to implement React contexts and React hooks
 (which we have none of currently, but would be located in `hooks` when we need them) too.
+
+If you want the data to be searchable via the search feature, you also want to hook this data up
+to [Algolia](https://www.algolia.com/) by adding it to `lib/algolia.ts`.
 
 ## Domain architecture
 
