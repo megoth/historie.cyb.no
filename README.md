@@ -13,6 +13,9 @@ static website that lives at [historie.cyb.no](https://historie.cyb.no).
 - [Algolia](https://www.algolia.com/) is a headless search engine, that integrates with Sanity so
   that we can index our data and offer a search feature on our webpage
 
+We use [Node Version Manager](https://github.com/nvm-sh/nvm) to ensure that we use the same version
+when developing the portal. Make sure to run `nvm use` before running any node commands.
+
 ## Running the front-end
 
 Rename the `.env.test` file to `.env` and store the environment variables that Next and Sanity will
