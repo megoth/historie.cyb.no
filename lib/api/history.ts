@@ -52,7 +52,10 @@ export async function getAllEventsForHistoryPage(
     }`)
   ]);
   return [
-    ...events.map(({ slug, ...data }) => ({ ...data, href: `/history/${slug}` })),
+    ...events.map(({ slug, ...data }) => ({
+      ...data,
+      href: `/${pageSlugs.HISTORY}/${slug}`
+    })),
     ...groups.map(({ group, year, semester, leader }) => ({
       name: `${group.name} ledes av ${leader || "ukjent"}`,
       year,

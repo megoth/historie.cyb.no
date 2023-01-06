@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { EventForListQuery } from "../../../lib/api/history";
 import DateFormat from "../../date-format";
 import Link from "../../link";
